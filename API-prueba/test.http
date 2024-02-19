@@ -1,0 +1,12 @@
+GET localhost:5073/users/
+
+GET localhost:5073/user/1
+
+POST localhost:5073/user/add
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "lautaro"
+}
+
