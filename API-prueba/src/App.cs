@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using CheckNameAndId;
-using FormatJson;
-using System.Net;
+using GetUserForId;
+using ReturnAllUsers;
+using AddUser;
+using UpdateUserInfo;
+using DeleteUserFromDB;
+using LoadUser;
 
 namespace StartApp
 {
@@ -25,105 +27,27 @@ namespace StartApp
         );
       });
 
+      CreateUser.Loaded();
+
       WebApplication app = builder.Build();
-
-      List<User> users = new List<User>();
-      users.Add(new User("1", "Dante"));
-      users.Add(new User("2", "Ezio"));
-      users.Add(new User("3", "Kratos"));
-
       app.UseCors(corsPolicyName);
+
+      // Obtener usuario por ID
+      app.MapGet("/user/{id}", P.GetUser);
+     
+      // Obtener todos los usuarios
+      app.MapGet("/users", UserCollection.GetAllUsers);
       
-      app.UseMiddleware<Midd>();
+      // Agregar un nuevo usuario
+      app.MapPost("/user/add", AddUserInDB.add);
 
-      app.MapGet("/user/{id}", (string id) => 
-      {
-        if (!int.TryParse(id, out int idParse))
-        {
-          // TODO: Entender que hace (int)
-          int errorCode = (int)HttpStatusCode.BadRequest;
-          return new Error(errorCode, "El id tiene que ser un número").GetErrorsInJson();
-        }
-  
-        if (users.Count < 1)
-        {
-          int errorCode = (int)HttpStatusCode.BadRequest;
-          return new Error(errorCode, "El id tiene que ser un número").GetErrorsInJson();
-        }
+      // Actualizar información del usuario
+      app.MapPatch("/user/update/{id}", User.Update);
 
-        var user = users.Find(e => e.id == id);
-        
-        if (user is null)
-        {
-          int errorCode = (int)HttpStatusCode.BadRequest;
-          return new Error(errorCode, "El id tiene que ser un número").GetErrorsInJson();
-        }
-
-        string json = FormatJsonSerializer.Format(user);
-
-        return json;
-
-      });
-
-      app.MapGet("/users", () => 
-      {
-        if (users.Count < 1)
-        {
-          int errorCode = (int)HttpStatusCode.NoContent;
-          var error = new Error(errorCode, "No hay usuarios"); 
-          return error.GetErrorsInJson();
-        }
-
-        return FormatJsonSerializer.Format(users);
-      });
-
-      app.MapPost("/user/add", ([FromBody] Users body) => 
-      {
-        User user = new User(body.id, body.name);
-        users.Add(user);
-        return $"El usuario {body.name} fue añadido con exito";        
-      });
-
-      app.MapPatch("/user/update/{id}", () =>
-      {
-
-      });
-
-      app.MapDelete("/user/delete", () =>
-      {
-
-      });
+      // Eliminar un usuario
+      app.MapDelete("/user/delete/{id}", DeleteUser.Delete);
 
       app.Run();
     }
-
-    class User : Users
-    {
-      public User(string userId, string userName)
-      {
-        id = userId;
-        name = userName;
-      }
-    }
-
-    class Error
-    {
-      public int ErrorCode { get; set; }
-      public string ErrorMessage { get; set; }
-
-      public Error(int errorCode, string errorMessage)
-      {
-        ErrorMessage = errorMessage;
-        ErrorCode = errorCode;
-      }
-
-      public string GetErrorsInJson()
-      {
-        // FIX: Ya me devuelve un el objeto correcto
-        var error = FormatJsonSerializer.Format(this);
-        return error;
-      }
-    }
   }
- 
 }

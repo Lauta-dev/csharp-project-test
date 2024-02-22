@@ -1,0 +1,30 @@
+### Variables
+@url=http://localhost:5073
+
+### Obtener todos los usuarios
+GET {{url}}/users/
+
+### Obtener usuarios por ID
+GET {{url}}/user/1
+
+### Agregar usuario
+POST {{url}}/user/add
+Content-Type: application/json
+
+{
+  "name": "marron"
+}
+
+### Actualizar información de usuario
+PATCH {{url}}/user/update/0
+Content-Type: application/json
+
+{
+  "name": "Lautaro"
+}
+
+### Eliminar usuario por ID
+DELETE {{url}}/user/delete/123
+
+
+
