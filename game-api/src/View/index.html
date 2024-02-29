@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prueba de C#</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="center">
+      <div>
+        <h2># Añadir un nuevo blog</h2>
+        <form>
+          <input type="text" name="url" id="blogUrl" placeholder="http://dev.to/react"/>
+          <button type="submit">Submit</button>
+        </form>     
+      </div>
+
+      <!-- Componente de notificación -->
+      <div id="notify"></div>
+
+      <!-- Notificar que el blog se envio correctamente -->
+      <div id="send-blog"></div>
+
+      <!-- Componente donde se cargaran los post -->
+      <div>
+        <h2># Posts</h2>
+        <div id="posts"></div>
+      </div>
+
+      <!-- Componente donde se cargaran los blogs -->
+      <div>
+        <h2># Blogs</h2>
+        <div id="blogs"></div>
+      </div>
+    </div>
+
+    <!-- Area para cargar los scripts -->
+    <script src="./main.js"></script> 
+    <script src="./post.js"></script> 
+    <script src="./blogs.js"></script> 
+  </body>
+</html>

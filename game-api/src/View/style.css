@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+}
+
+#post-list {
+  border: 2px solid #27a1b9;
+  border-radius: .5rem;
+}
+
+body {
+  background: #1a1b26;
+  color: #c0caf5;
+}
+
+a {
+  color: #7aa2f7;
+}
+
+h2 {
+  color: #ff9e64;
+}
+      
+#see-fetch-error {
+  color: red;
+}
+
+button {
+  color: #c0caf5;
+  background: #292e42;
+  
+  border: none;
+  padding: 5px;
+  font-size: 15px;
+  transition: 500ms all;
+  margin: 0 0 0 1rem;
+  border: 2px solid transparent;
+}
+
+input#blogUrl {
+  padding: .4rem;
+  border: none;
+  font-size: 1rem;
+  border: 2px solid #737aa2;
+  background: #15161e;
+  border-radius: 5px;  
+  color: white;
+}
+
+input::placeholder {
+  color: #545c7e;
+}
+
+button:hover{
+  cursor: pointer;
+  transition: 500ms all;
+  background: #15161e;
+}
+
+button:disabled {
+  background: #e1e2e7;
+  cursor: crosshair;
+  color: #000;
+  /*
+   * TODO: Hacer que el curso se una X o simila
+   *
+   * */
+  cursor: none;
+}
+
+#notify {
+        z-index: 1;
+    position: absolute;
+    top: 0rem;
+    left: 52rem;
+    font-size: .8rem;
+}
+
+#center {
+  margin-left: 7rem;
+}
+
+
+#blogs {
+  width: 50rem;
+}
