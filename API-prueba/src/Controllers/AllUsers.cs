@@ -7,7 +7,6 @@ namespace ReturnAllUsers
   {
     public static List<User> users = LoadUser.CreateUser.usersList;
     
-    
     public static object GetAllUsers()
     {
       if (users.Count < 1)
