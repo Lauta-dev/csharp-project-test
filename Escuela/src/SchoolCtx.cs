@@ -5,22 +5,20 @@ using Escuela.Models.Aulas;
 
 namespace ConsoleApp.PostgreSQL
 {
-  public class BloggingContext : DbContext
+  public class SchoolCtx : DbContext
   {
-    public DbSet<Alumno> Alumnos { get; set; }
-    public DbSet<Aulas> Aulas { get; set; }
+    public DbSet<Student> student { get; set; }
+    public DbSet<Classrooms> classroom { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       
       // Asignar PK (Primaty Key)
-      modelBuilder.Entity<Aulas>()
+      modelBuilder.Entity<Classrooms>()
         .HasKey(a => a.Id);
       
-      modelBuilder.Entity<Alumno>()
+      modelBuilder.Entity<Student>()
         .HasKey(a => a.Id);
-
-      // Relaciones
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -30,12 +28,7 @@ namespace ConsoleApp.PostgreSQL
         .Build();
 
       var db = configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
-      var host = db.Host;
-      var username = db.Username;
-      var dbName = db.DatabaseName;
-
-      optionsBuilder.UseNpgsql($"Host={host};Database={dbName};Username={username}");
-
+      optionsBuilder.UseNpgsql($"Host={db.Host};Database={db.DatabaseName};Username={db.Username}");
     }
   }
 }

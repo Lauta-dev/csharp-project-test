@@ -1,6 +1,6 @@
 using ConsoleApp.PostgreSQL;
-using A;
-using Interface.Alumno;
+using StudentManagement;
+using SchoolManagement.AlumnoRe;
 
 namespace Escuela.Configuration
 {
@@ -24,12 +24,16 @@ namespace Escuela.Configuration
 
     public void AddDb()
     {
-      services.AddDbContext<BloggingContext>();
+      services.AddDbContext<SchoolCtx>();
     }
 
     public void AddScope()
     {
-      services.AddScoped<IRequestAlumno, I>();
+      services.AddScoped<IRequestAlumno, AlumnoService>();
+    }
+
+    public void AddControllers() {
+      services.AddControllers();
     }
   }
 }

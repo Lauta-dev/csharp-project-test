@@ -16,16 +16,16 @@ id_alumno reference Alumnos
  * */
 
 namespace Escuela.Models.Tarea;
-public class Tarea {
+public class Task {
   public string Id = UUID.GenerateUUID();
 
-  [Column("aula")]
-  public string Aula { get; set; }
+  [Column("classroom")]
+  public string? Aula { get; set; }
 
-  [Column("titulo")]
-  public string Titulo { get; set; }
+  [Column("title")]
+  public string? Titulo { get; set; }
 
-  [Column("contenido")]
-  public string Contenido { get; set; }
+  [Column("content")]
+  public string? Contenido { get; set; }
   
 }
