@@ -13,7 +13,7 @@ namespace ConsoleApp.PostgreSQL
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       
-      // Asignar PK (Primaty Key)
+      // Asignar PK
       modelBuilder.Entity<Classrooms>()
         .HasKey(a => a.Id);
       

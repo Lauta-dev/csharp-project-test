@@ -6,11 +6,11 @@ namespace Escuela.Models.Aulas;
 public class Classrooms {
 
   [Column("id")]
-  public string Id { get; } = UUID.GenerateUUID(); 
+  public string Id {get; set; } = UUID.GenerateUUID(); 
   
   [Column("classroom")]
-  public string? Aula { get; set; }
+  public string Aula { get; set; }
   
   [Column("students")]
-  public ICollection<Alumno.Student>? Students { get; set; }
+  public ICollection<Alumno.Student> Students { get; set; }
 }

@@ -6,16 +6,16 @@ namespace Escuela.Models.Base;
 public class Person
 {
   [Column("id")]
-  public string Id { get; } = UUID.GenerateUUID();
+  public string Id = UUID.GenerateUUID();
 
   [Column("name")]
-  public string? Name { get; set; }
+  public string Name { get; set; }
 
   [Column("last_name")]
-  public string? LastName { get; set; }
+  public string LastName { get; set; }
 
   [Column("age")]
-  public int? Age { get; set; }
+  public int Age { get; set; }
 
   [Column("fecha_de_nacimiento")]
   [DataType(DataType.Date)]

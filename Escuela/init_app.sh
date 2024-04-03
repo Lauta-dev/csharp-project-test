@@ -2,13 +2,13 @@
 
 function ayuda() {
   echo "
-  --hot
+  --watch
     Cada que cambie el archivo se vuelve a compilar la APP 
-    Command: [dotnet watch run]
+    Comando: dotnet watch run
 
   --run
     Se ejecua una vez la aplicación
-    Command: [dotnet run]
+    Comando: dotnet run
   "
 }
 
@@ -19,12 +19,10 @@ case "$1" in
   "-h")
     ayuda
   ;;
-  "--hot")
-    echo "Ejecutando [dotnet watch run]"
+  "--watch")
     dotnet watch run
   ;;
   "--run")
-    echo "Ejecutando [dotnet run]"
     dotnet run
   ;;
   *)

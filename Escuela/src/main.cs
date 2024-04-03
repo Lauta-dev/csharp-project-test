@@ -26,6 +26,7 @@ class Main
     configServices.AddDb();
     configServices.AddScope();
     configServices.AddControllers();
+    configServices.JsonConfig();
 
     var habilitarCors = "ha";
     configServices.Cors(habilitarCors);

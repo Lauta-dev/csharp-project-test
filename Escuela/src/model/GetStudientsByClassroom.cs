@@ -13,17 +13,31 @@ class GetStudentsByClassroom
   public object S(string id, int limit = 10)
   {
     var db = _db;
+    System.Console.WriteLine(id);
 
-    var q = (from a in db.student
-             join au in db.classroom on a.AulaId equals au.Id
-             where a.AulaId == id
-             select new
-             {
-               aula = au.Aula,
-               name = a.Name,
-               aulaId = a.AulaId
-             }).Take(limit);
+    var q = db.student.Join(
+      db.classroom,
+      student => student.ClassroomsId,
+      classroom => classroom.Id,
+      (s, c) => new
+      {
+        name = s.Name,
+        classroom = c.Aula,
+        classId = c.Id
+      }
+    );
 
-    return q;
+    return new
+    {
+      info = new {
+        next = limit > q.Count() ? 0 :  q.Count() - limit,
+        prev = limit < 5 ? limit : limit - 5,
+        
+        get = limit,
+        from = q.Count(),
+      },
+
+      data = q.Where(s => s.classId == id).Take(limit)
+    };
   }
 }

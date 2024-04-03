@@ -1,6 +1,8 @@
 using SchoolManagement.AlumnoRe;
 using ConsoleApp.PostgreSQL;
+
 using Escuela.Models.Alumno;
+using Escuela.Models.Aulas;
 
 using Model.GetStudents;
 using Model.GetStudentById;
@@ -8,6 +10,8 @@ using Model.GetStudentsByClassroom;
 using Model.PostStudents;
 
 using Model.GetClassrooms;
+using Model.PostClassroom;
+using WebApi.Responses;
 
 namespace StudentManagement;
 class AlumnoService : IRequestAlumno
@@ -30,7 +34,7 @@ class AlumnoService : IRequestAlumno
   }
 
   // Post
-  public object AddNewStudent(Student[] alumnos)
+  public R AddNewStudent(Student[] alumnos)
   {
 
     return new PostStudents(_db).S(alumnos);
@@ -40,5 +44,10 @@ class AlumnoService : IRequestAlumno
   public object GetClassrooms()
   {
     return new GetClassrooms(_db).Classrooms(); 
+  }
+
+  public object AddNewClassrooms(Classrooms[] classroom)
+  {
+    return new PostClassroom(_db).Classroom(classroom);
   }
 }

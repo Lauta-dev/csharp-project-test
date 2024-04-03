@@ -24,7 +24,7 @@ public class GetStudents
         lastName = alumno.LastName,
         id = alumno.Id,
         age = alumno.Age,
-        aulaId = alumno.AulaId,
+        aulaId = alumno.ClassroomsId,
         fechaDeNacimiento = DateParse.FormatDate(alumno.FechaDeNacimiento.ToString())
       });
     }

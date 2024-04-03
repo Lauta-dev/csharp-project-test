@@ -16,6 +16,11 @@ class PostClassroom
   {
     foreach(Classrooms classroom in classrooms)
     {
+      System.Console.WriteLine(new {
+        aulaid = classroom.Aula,
+        id = classroom.Id
+
+      });
       // TODO: Verificar que el aula no exista antes de agregarla
       var newValue = new Classrooms { Aula = classroom.Aula };
       _db.classroom.Add(newValue);

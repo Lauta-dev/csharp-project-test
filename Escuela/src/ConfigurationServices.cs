@@ -1,6 +1,7 @@
 using ConsoleApp.PostgreSQL;
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
+using System.Text.Json.Serialization;
 
 namespace Escuela.Configuration
 {
@@ -32,8 +33,13 @@ namespace Escuela.Configuration
       services.AddScoped<IRequestAlumno, AlumnoService>();
     }
 
-    public void AddControllers() {
+    public void AddControllers()
+    {
       services.AddControllers();
     }
+
+    public void JsonConfig()
+      => services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(
+          options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   }
 }

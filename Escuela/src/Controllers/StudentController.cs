@@ -38,7 +38,8 @@ public class Students : Controller
   {
     try
     {
-      return _req.AddNewStudent(alumno);  
+      var e = _req.AddNewStudent(alumno);
+      return StatusCode(e.httpCode, e.anyData ?? e.comment);
     }
     catch (ArgumentNullException ex)
     {
@@ -46,7 +47,7 @@ public class Students : Controller
     }
     catch (System.Exception e)
     {
-      return StatusCode(HttpCodeStatus.InternalServerError, e.Message);
+      return StatusCode(HttpCodeStatus.InternalServerError, e.InnerException.Message);
     }
   }
 }
