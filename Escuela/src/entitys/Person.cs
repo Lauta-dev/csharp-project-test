@@ -1,6 +1,6 @@
-using Helper.UUID;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Helper.UUID;
 
 namespace Escuela.Models.Base;
 public class Person

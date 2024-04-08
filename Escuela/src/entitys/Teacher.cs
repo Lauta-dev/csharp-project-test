@@ -2,22 +2,23 @@ using Escuela.Models.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Escuela.Models.Profe;
+using Escuela.Models.Tarea;
 
+namespace Escuela.Models.TeacherModel;
 [Table("teacher")]
-public class Teacher : Person
+public class TeacherModel : Person
 {
-  [Column("classroom_id")]
-  public string? AulaId { get; set; }
+  public string ClassroomsId { get; set; }
 
-  [Column("asignature")]
-  public string? Asignatura { get; set; }
+  // Materia/Asignatura
+  [Column("school_subject")]
+  public string SchoolSubject { get; set; }
 
-  [Column("horario")]
+  // Horario del profesor
+  [Column("schedule")]
   [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
   [DataType(DataType.Time)]
-  public DateTime Horario { get; set; }
+  public DateTime Schedule { get; set; }
 
-  [Column("classroom")]
-  public Aulas.Classrooms? Aula { get; set; }
+  public ICollection<StudentTask> studentTask { get; set; }
 }

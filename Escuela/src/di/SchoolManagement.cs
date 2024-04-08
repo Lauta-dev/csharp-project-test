@@ -1,5 +1,6 @@
 using Escuela.Models.Alumno;
 using Escuela.Models.Aulas;
+using Escuela.Models.Tarea;
 using WebApi.Responses;
 
 namespace SchoolManagement.AlumnoRe;
@@ -24,5 +25,13 @@ public interface IRequestAlumno
   public object GetClassrooms();
 
   // Post
-  public object AddNewClassrooms(Classrooms[] classroom);
+  public R AddNewClassrooms(Classrooms[] classroom);
+
+  // # Task
+  public R AddNewTask(StudentTask[] studentTasks);
+  public R GetTasks();
+
+  // # Teacher
+  public R AddNewTeacher(Escuela.Models.TeacherModel.TeacherModel[] teacher);
+  public R GetAllTeacher();
 }

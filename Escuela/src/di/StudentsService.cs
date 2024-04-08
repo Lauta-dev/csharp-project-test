@@ -7,11 +7,18 @@ using Escuela.Models.Aulas;
 using Model.GetStudents;
 using Model.GetStudentById;
 using Model.GetStudentsByClassroom;
+
 using Model.PostStudents;
 
 using Model.GetClassrooms;
 using Model.PostClassroom;
+
+using Model.PostTask;
+
+using Escuela.Models.Tarea;
+
 using WebApi.Responses;
+using Model.GetTeachers;
 
 namespace StudentManagement;
 class AlumnoService : IRequestAlumno
@@ -46,8 +53,17 @@ class AlumnoService : IRequestAlumno
     return new GetClassrooms(_db).Classrooms(); 
   }
 
-  public object AddNewClassrooms(Classrooms[] classroom)
+  public R AddNewClassrooms(Classrooms[] classroom)
   {
     return new PostClassroom(_db).Classroom(classroom);
   }
+
+  public R AddNewTask(StudentTask[] studentTasks) => StudentTasks.S(_db, studentTasks);
+  public R GetTasks() => Model.GetTask.GetTasks.S(_db);
+
+  // # Teacher
+  public R AddNewTeacher(Escuela.Models.TeacherModel.TeacherModel[] teacher)
+    => Model.PostTeacher.PostTeacher.S(_db, teacher);
+
+  public R GetAllTeacher() => GetTeachers.S(_db);
 }

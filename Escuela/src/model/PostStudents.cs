@@ -1,7 +1,8 @@
 using Escuela.Models.Alumno;
 using ConsoleApp.PostgreSQL;
 using WebApi.Responses;
-
+using Npgsql;
+using HttpStatusCodes;
 namespace Model.PostStudents;
 class PostStudents
 {
@@ -15,50 +16,103 @@ class PostStudents
 
   public R S(Student[] alumnos)
   {
-    var finalsta = new List<Student>();
-
     try
     {
+      string message = "";
       foreach (Student a in alumnos)
       {
         var aula = _db.classroom.FirstOrDefault(e => e.Id == a.ClassroomsId);
-
         if (aula is null) return new ResponseBuilder("No existe el aula", 404).GetResult();
-
-        // NOTE: 
-        //  # Se me ocurrio ir verificando por
-        //    - Edad del estudiante es >= 12 && 18 <=
-        //    - Verificar que la fecha este correcta
-        //    - Verificar que el apellido y nombre no lleven números
-
-        var data = new Student
+        if (a.Name == null)
         {
-          Name = a.Name,
-          LastName = a.LastName,
-          Age = a.Age,
-          FechaDeNacimiento = a.FechaDeNacimiento,
-          ClassroomsId = a.ClassroomsId
-        };
+          message = "El valor name debe tener el nombre del estudiante";
+          return new ResponseBuilder(
+            message,
+            Codes.BadRequest,
+            new 
+            {
+              pass = false,
+              message,
+              statusCode = Codes.BadRequest
+            }
+          ).GetResult();
+        }
 
-        //System.Console.WriteLine(data.Name);
+        if (a.LastName == null)
+        {
+          message = "El valor name debe tener el nombre del estudiante";
+          return new ResponseBuilder(
+            message,
+            Codes.BadRequest,
+            new 
+            {
+              pass = false,
+              message,
+              statusCode = Codes.BadRequest
+            }
+          ).GetResult();
+        }
 
-        finalsta.Add(data);
+        if (a.Age == null)
+        {
+          message = "El valor name debe tener el nombre del estudiante";
+            return new ResponseBuilder(
+            message,
+            Codes.BadRequest,
+            new 
+            {
+              pass = false,
+              message,
+              statusCode = Codes.BadRequest
+            }
+          ).GetResult();
+        }
+
+        if (a.Age > 13 && a.Age < 18)
+        {
+          message = "El valor name debe tener el nombre del estudiante";
+            return new ResponseBuilder(
+            message,
+            Codes.BadRequest,
+            new 
+            {
+              pass = false,
+              message,
+              statusCode = Codes.BadRequest
+            }
+          ).GetResult();
+        }
       }
 
-      _db.student.AddRange(finalsta);
+      _db.student.AddRange(alumnos);
       _db.SaveChanges();
 
-      return new ResponseBuilder("Alumnos añadidos", 200, finalsta).GetResult();
+      return new ResponseBuilder("Alumnos añadidos", 200, alumnos).GetResult();
     }
     catch (System.Text.Json.JsonException e)
     {
       return new ResponseBuilder("Alumnos añadidos", 500, e.Message).GetResult();
     }
+    catch (NpgsqlException ex)
+    {
+      System.Console.WriteLine(new {message = "pgsql ex", ex});
+      return new ResponseBuilder("Error por parte del server", 500).GetResult();
+    }
     catch (System.Exception e)
     {
-      return new ResponseBuilder("Alumnos añadidos", 500, e.InnerException.Message).GetResult();
+      if (e.InnerException.Message.Contains("Failed to connect to"))
+      {
+        return new ResponseBuilder(
+          "No se pudo conectar a la base de datos",
+          400,
+          new
+          {
+            message = "No se pudo conectar a la base de datos",
+            pass = false
+          }).GetResult();
+      }
+      return new ResponseBuilder("Error por nose server", 500).GetResult();
+
     }
-
-
   }
 }

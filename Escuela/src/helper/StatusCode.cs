@@ -1,6 +1,6 @@
 using System.Net;
-namespace Tuk;
-class HttpCodeStatus
+namespace HttpStatusCodes;
+class Codes
 {
   public const int Ok = (int)HttpStatusCode.OK;
   public const int InternalServerError = (int)HttpStatusCode.InternalServerError;

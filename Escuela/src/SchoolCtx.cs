@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using DbSettings;
 using Escuela.Models.Alumno;
 using Escuela.Models.Aulas;
+using Escuela.Models.TeacherModel;
+using Escuela.Models.Tarea;
 
 namespace ConsoleApp.PostgreSQL
 {
@@ -9,16 +11,32 @@ namespace ConsoleApp.PostgreSQL
   {
     public DbSet<Student> student { get; set; }
     public DbSet<Classrooms> classroom { get; set; }
+    public DbSet<TeacherModel> teacher { get; set; }
+    public DbSet<StudentTask> task { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder mb)
     {
-      
       // Asignar PK
-      modelBuilder.Entity<Classrooms>()
-        .HasKey(a => a.Id);
+      mb.Entity<Classrooms>().HasKey(key => key.Id);  // Tabla classrooms
+      mb.Entity<Student>().HasKey(key => key.Id); // Tabla student
+      mb.Entity<TeacherModel>().HasKey(key => key.Id); // Tabla teacher
+      mb.Entity<StudentTask>().HasKey(key => key.Id); // student_task
+
+      // # Relaciones
+      // - Tareas (tasks)
+      mb.Entity<Classrooms>()
+        .HasMany(e => e.st)
+        .WithOne(e => e.classroom);
+
+      // - Profesores a tareas
+      mb.Entity<TeacherModel>()
+        .HasMany(e => e.studentTask)
+        .WithOne(e => e.teacher);
       
-      modelBuilder.Entity<Student>()
-        .HasKey(a => a.Id);
+      // - Tareas a alumnos
+      mb.Entity<Student>()
+        .HasMany(e => e.studentTasks)
+        .WithOne(e => e.student);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

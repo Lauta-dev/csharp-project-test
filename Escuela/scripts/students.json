@@ -1,0 +1,30 @@
+[
+  {
+    "name": "marcos",
+    "lastName": "moodle",
+    "age": "21",
+    "fechaDeNacimiento": "<<timestamp>>",
+    "ClassroomsId": "<<aula>>"
+  },
+  {
+    "name": "martin",
+    "lastName": "diaz",
+    "age": "<<e>>",
+    "fechaDeNacimiento": "<<timestamp>>",
+    "ClassroomsId": "<<aula>>"
+  },
+  {
+    "name": "mauricio",
+    "lastName": "mugi",
+    "age": "<<e>>",
+    "fechaDeNacimiento": "<<timestamp>>",
+    "ClassroomsId": "<<aula>>"
+  },
+  {
+    "name": "exsajasklfjñkajsdlkfjñalsdjkf",
+    "lastName": "pro",
+    "age": "<<e>>",
+    "fechaDeNacimiento": "<<timestamp>>",
+    "ClassroomsId": "<<aula>>"
+  }
+]

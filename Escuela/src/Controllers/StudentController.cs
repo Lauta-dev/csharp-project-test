@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.AlumnoRe;
 using Escuela.Models.Alumno;
-using Tuk;
+using HttpStatusCodes;
 
 namespace Students.Controllers;
 public class Students : Controller
@@ -47,7 +47,7 @@ public class Students : Controller
     }
     catch (System.Exception e)
     {
-      return StatusCode(HttpCodeStatus.InternalServerError, e.InnerException.Message);
+      return StatusCode(Codes.InternalServerError, e.InnerException.Message);
     }
   }
 }

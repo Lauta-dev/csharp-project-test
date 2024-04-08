@@ -12,7 +12,7 @@ public class GetStudentById
 
   public object Student(string id)
   {
-    var student = _db.student.FirstOrDefault(s => s.Id == id);
+    var student = _db.student.FirstOrDefault(s => s.Id.ToString() == id);
 
     if (student is null)
     {
