@@ -1,8 +1,8 @@
 using Escuela.Models.Alumno;
 using ConsoleApp.PostgreSQL;
-using WebApi.Responses;
+using Helper.Responses;
 using Npgsql;
-using HttpStatusCodes;
+using Helper.HttpStatusCodes;
 namespace Model.PostStudents;
 class PostStudents
 {

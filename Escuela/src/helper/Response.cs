@@ -1,4 +1,4 @@
-namespace WebApi.Responses;
+namespace Helper.Responses;
 public class ResponseBuilder
 {
   public string Comment;

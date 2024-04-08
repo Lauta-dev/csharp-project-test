@@ -17,7 +17,7 @@ using Model.PostTask;
 
 using Escuela.Models.Tarea;
 
-using WebApi.Responses;
+using Helper.Responses;
 using Model.GetTeachers;
 
 namespace StudentManagement;

@@ -1,5 +1,5 @@
 using System.Net;
-namespace HttpStatusCodes;
+namespace Helper.HttpStatusCodes;
 class Codes
 {
   public const int Ok = (int)HttpStatusCode.OK;

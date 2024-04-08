@@ -1,8 +1,8 @@
 using ConsoleApp.PostgreSQL;
 using Escuela.Models.Aulas;
 using System.Text.RegularExpressions;
-using WebApi.Responses;
-using HttpStatusCodes;
+using Helper.Responses;
+using Helper.HttpStatusCodes;
 
 namespace Model.PostClassroom;
 class PostClassroom

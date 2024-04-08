@@ -1,5 +1,5 @@
 using ConsoleApp.PostgreSQL;
-using WebApi.Responses;
+using Helper.Responses;
 using Escuela.Models.TeacherModel;
 
 namespace Model.PostTeacher;

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.AlumnoRe;
 using Escuela.Models.Alumno;
-using HttpStatusCodes;
+using Helper.HttpStatusCodes;
 
 namespace Students.Controllers;
 public class Students : Controller

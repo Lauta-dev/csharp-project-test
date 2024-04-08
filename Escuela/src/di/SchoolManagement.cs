@@ -1,7 +1,7 @@
 using Escuela.Models.Alumno;
 using Escuela.Models.Aulas;
 using Escuela.Models.Tarea;
-using WebApi.Responses;
+using Helper.Responses;
 
 namespace SchoolManagement.AlumnoRe;
 

@@ -1,6 +1,6 @@
 using ConsoleApp.PostgreSQL;
 using Escuela.Models.Tarea;
-using WebApi.Responses;
+using Helper.Responses;
 
 namespace Model.PostTask;
 public class StudentTasks
