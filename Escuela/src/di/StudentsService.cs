@@ -9,9 +9,6 @@ using Model.GetStudentsByClassroom;
 
 using Model.PostStudents;
 
-using Model.PostTask;
-
-using Escuela.Models.Tarea;
 
 using Helper.Responses;
 using Model.GetTeachers;
@@ -46,8 +43,6 @@ class AlumnoService : IRequestAlumno
   // # Classromms
 
 
-  public R AddNewTask(StudentTask[] studentTasks) => StudentTasks.S(_db, studentTasks);
-  public R GetTasks() => Model.GetTask.GetTasks.S(_db);
 
   // # Teacher
   public R AddNewTeacher(Escuela.Models.TeacherModel.TeacherModel[] teacher)

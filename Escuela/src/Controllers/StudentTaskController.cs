@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.AlumnoRe;
+using SchoolManagement.Task;
 using Escuela.Models.Tarea;
 
 namespace StudentTaskc.Controllers;
 
 public class Task : Controller
 {
-  private readonly IRequestAlumno _req;
+  private readonly ISchoolManagementTask _req;
 
-  public Task(IRequestAlumno requestAlumno)
+  public Task(ISchoolManagementTask requestAlumno)
   {
     _req = requestAlumno;
   }

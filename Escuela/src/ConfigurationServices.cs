@@ -1,9 +1,14 @@
 using ConsoleApp.PostgreSQL;
+using System.Text.Json.Serialization;
+
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
-using SchoolManagement.Classroom;
-using System.Text.Json.Serialization;
+
 using ClassroomManagement;
+using SchoolManagement.Classroom;
+
+using TaskManagement;
+using SchoolManagement.Task;
 
 namespace Escuela.Configuration
 {
@@ -34,6 +39,7 @@ namespace Escuela.Configuration
     {
       services.AddScoped<IRequestAlumno, AlumnoService>();
       services.AddScoped<ISchoolManagementClassroom, ClassroomService>();
+      services.AddScoped<ISchoolManagementTask, TaskService>();
     }
 
     public void AddControllers()
