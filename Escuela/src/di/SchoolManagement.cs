@@ -1,5 +1,4 @@
 using Escuela.Models.Alumno;
-using Escuela.Models.Aulas;
 using Escuela.Models.Tarea;
 using Helper.Responses;
 
@@ -21,12 +20,6 @@ public interface IRequestAlumno
   
   // # Classroom
   
-  // Get
-  public object GetClassrooms();
-
-  // Post
-  public R AddNewClassrooms(Classrooms[] classroom);
-
   // # Task
   public R AddNewTask(StudentTask[] studentTasks);
   public R GetTasks();

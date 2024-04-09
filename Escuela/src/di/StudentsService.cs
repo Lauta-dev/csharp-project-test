@@ -2,16 +2,12 @@ using SchoolManagement.AlumnoRe;
 using ConsoleApp.PostgreSQL;
 
 using Escuela.Models.Alumno;
-using Escuela.Models.Aulas;
 
 using Model.GetStudents;
 using Model.GetStudentById;
 using Model.GetStudentsByClassroom;
 
 using Model.PostStudents;
-
-using Model.GetClassrooms;
-using Model.PostClassroom;
 
 using Model.PostTask;
 
@@ -48,15 +44,7 @@ class AlumnoService : IRequestAlumno
   }
 
   // # Classromms
-  public object GetClassrooms()
-  {
-    return new GetClassrooms(_db).Classrooms(); 
-  }
 
-  public R AddNewClassrooms(Classrooms[] classroom)
-  {
-    return new PostClassroom(_db).Classroom(classroom);
-  }
 
   public R AddNewTask(StudentTask[] studentTasks) => StudentTasks.S(_db, studentTasks);
   public R GetTasks() => Model.GetTask.GetTasks.S(_db);

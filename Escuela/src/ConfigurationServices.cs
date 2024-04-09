@@ -1,7 +1,9 @@
 using ConsoleApp.PostgreSQL;
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
+using SchoolManagement.Classroom;
 using System.Text.Json.Serialization;
+using ClassroomManagement;
 
 namespace Escuela.Configuration
 {
@@ -31,6 +33,7 @@ namespace Escuela.Configuration
     public void AddScope()
     {
       services.AddScoped<IRequestAlumno, AlumnoService>();
+      services.AddScoped<ISchoolManagementClassroom, ClassroomService>();
     }
 
     public void AddControllers()

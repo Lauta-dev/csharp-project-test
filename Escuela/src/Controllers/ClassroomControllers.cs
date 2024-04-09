@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.AlumnoRe;
+using SchoolManagement.Classroom;
 using Escuela.Models.Aulas;
 
 namespace Classroom.Controllers;
 
 public class Classroom : Controller
 {
-  private readonly IRequestAlumno _req;
+  private readonly ISchoolManagementClassroom _req;
 
-  public Classroom(IRequestAlumno requestAlumno)
+  public Classroom(ISchoolManagementClassroom classroom)
   {
-    _req = requestAlumno;
+    _req = classroom;
   }
 
   public object Index() => _req.GetClassrooms();
