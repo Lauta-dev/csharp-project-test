@@ -10,6 +10,9 @@ using SchoolManagement.Classroom;
 using TaskManagement;
 using SchoolManagement.Task;
 
+using TeacherManagement;
+using SchoolManagement.Teacher;
+
 namespace Escuela.Configuration
 {
   public class ServiceConfigurator
@@ -40,6 +43,7 @@ namespace Escuela.Configuration
       services.AddScoped<IRequestAlumno, AlumnoService>();
       services.AddScoped<ISchoolManagementClassroom, ClassroomService>();
       services.AddScoped<ISchoolManagementTask, TaskService>();
+      services.AddScoped<ISchoolManagementTeacher, TeacherServieces>();
     }
 
     public void AddControllers()

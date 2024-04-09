@@ -1,28 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.AlumnoRe;
+using SchoolManagement.Teacher;
 using Escuela.Models.TeacherModel;
 
 namespace Teacher.Controllers;
 
-public class Profe : Controller
+public class Teacher : Controller
 {
-  private readonly IRequestAlumno _req;
+  private readonly ISchoolManagementTeacher Req;
 
-  public Profe(IRequestAlumno requestAlumno)
+  public Teacher(ISchoolManagementTeacher schoolManagement)
   {
-    _req = requestAlumno;
+    Req = schoolManagement;
   }
 
   public object Index()
   {
-    var data = _req.GetAllTeacher();
+    var data = Req.GetAllTeacher();
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 
-  [HttpPost("/profe/new")]
+  [HttpPost("/teacher/new")]
   public object NewClassroom([FromBody] TeacherModel[] teacher)
   {
-    var data = _req.AddNewTeacher(teacher);
+    var data = Req.AddNewTeacher(teacher);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 }

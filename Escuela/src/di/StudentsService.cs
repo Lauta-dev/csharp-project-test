@@ -9,9 +9,7 @@ using Model.GetStudentsByClassroom;
 
 using Model.PostStudents;
 
-
 using Helper.Responses;
-using Model.GetTeachers;
 
 namespace StudentManagement;
 class AlumnoService : IRequestAlumno
@@ -33,20 +31,9 @@ class AlumnoService : IRequestAlumno
     return new GetStudentsByClassroom(_db).S(id, limit);
   }
 
-  // Post
   public R AddNewStudent(Student[] alumnos)
   {
-
     return new PostStudents(_db).S(alumnos);
   }
-
-  // # Classromms
-
-
-
-  // # Teacher
-  public R AddNewTeacher(Escuela.Models.TeacherModel.TeacherModel[] teacher)
-    => Model.PostTeacher.PostTeacher.S(_db, teacher);
-
-  public R GetAllTeacher() => GetTeachers.S(_db);
+  
 }
