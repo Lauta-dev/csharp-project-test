@@ -1,8 +1,10 @@
 [
   {
-    "title": "Estudio de Bash Scripts",
+    "title": "asdsadsa",
     "content": "Crear un archivo .sh para formatear un JSON",
-    "important": 0,
+    "important": 1,
+    "createAt": "2024-04-17T13:08:00.000Z",
+    "limitAt": "2024-04-19T19:58:00.000Z",
 
     "studentId": "64c7ecf5-e91f-45bc-80bc-130c0d65b9dd",
     "teacherId": "1b492ca7-4a77-4331-b064-f0df4c9e4204",

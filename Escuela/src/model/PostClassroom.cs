@@ -21,39 +21,6 @@ class PostClassroom
 
     foreach (Classrooms classroom in classrooms)
     {
-      if (int.TryParse(classroom.Aula, out _))
-      {
-        error = true;
-        return new ResponseBuilder(
-          "Las clases no deben ser un número, deben ser del estilo 'A-1, A-2, B-1, B-2'",
-          Codes.BadRequest,
-          new
-          {
-            pass = false,
-            comment = "Las clases no deben ser un número, deben ser del estilo 'A-1, A-2, B-1, B-2'",
-            statusCode = Codes.BadRequest,
-            classrooms
-          }
-        ).GetResult();
-      }
-
-      if (!Regex.IsMatch(classroom.Aula, pattern))
-      {
-        error = true;
-        return new ResponseBuilder(
-          "El aula debe estar en este formato: 1-A",
-          Codes.BadRequest,
-          new
-          {
-            pass = false,
-            comment = "El aula debe estar en este formato: 1-A",
-            statusCode = Codes.BadRequest,
-            classrooms
-
-          }
-        ).GetResult();
-      }
-
       if (_db.classroom.FirstOrDefault(x => x.Aula.ToLower() == classroom.Aula.ToLower()) != null)
       {
         error = true;

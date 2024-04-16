@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Classroom;
 using Escuela.Models.Aulas;
+using RoutersNames;
 
 namespace Classroom.Controllers;
 
@@ -15,7 +16,7 @@ public class Classroom : Controller
 
   public object Index() => _req.GetClassrooms();
   
-  [HttpPost("/classroom/new")]
+  [HttpPost(DefaultRouts.ClassroomNew)]
   public object NewClassroom([FromBody] Classrooms[] classrooms)
   {
     try

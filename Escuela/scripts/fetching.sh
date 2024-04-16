@@ -26,7 +26,7 @@ my_json="$(bun run ./changeIdInStudents.ts "a28dfaf8-6bb3-4069-8ec5-b35f67ecc8e9
 # Retorna:
 #   La respuesta del servidor HTTP.
 post_data() {
-  curl -Ss -X "POST" \
+  curl -i -Ss -X "POST" \
     -A "$user_agent" \
     -H "$headers" \
     -d "$1" \
@@ -72,8 +72,8 @@ get_data() {
 
 #----------------  Tareas (Tasks)  ----------------#
 
-#post_data "$(cat ./tasks.json)" "$baseURL/task/new"
 #get_data "$baseURL/task"
+post_data "$(cat ./tasks.json)" "$baseURL/task/new"
 
 #----------------  Profesores (Teachers)  ----------------#
 
@@ -81,4 +81,5 @@ get_data() {
 #post_data "$(cat ./teacher.json)" "$baseURL/profe/new"
 
 #---------------------------------------------------------#
+
 

@@ -1,5 +1,5 @@
 using ConsoleApp.PostgreSQL;
-using System.Text.Json.Serialization;
+using System.Text.Json;
 
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
@@ -31,6 +31,7 @@ namespace Escuela.Configuration
           policy.WithOrigins("*")
         )
       );
+
     }
 
     public void AddDb()
@@ -52,7 +53,14 @@ namespace Escuela.Configuration
     }
 
     public void JsonConfig()
-      => services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(
-          options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+    {
+      services.AddControllersWithViews()
+        .AddJsonOptions(options =>
+        {
+          
+          options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+          options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        });
+    }
   }
 }

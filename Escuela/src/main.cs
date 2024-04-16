@@ -1,20 +1,6 @@
 using Escuela.Configuration;
-
-/* # Cosas por hacer
- *
- * - Controlador para el aula
- * - Hacer la tabla de profesores e tareas
- * - Renombrar HelloWorldControllers por un nombre más formal
- * - Crear tabla de asignaruta
- * - Validaciones en los controller
- * 
- * - Autenticación con JWT
- *    - Poder actualizar información de un usuario
- *    - Poder eliminar un usuario
- *
- * - Crear `Class` de errores
- * - uso correcto de las Responses (retornar un JSON e StatusCode correcto)
- * */
+using Middleware.CheckBodyBeforeAddClassroom;
+using Middleware.CheckTask;
 
 namespace Principal;
 class Main
@@ -32,8 +18,13 @@ class Main
     configServices.Cors(habilitarCors);
 
     var app = builder.Build();
+
+    // TODO: Añadir los demás middleware para las demás rutas que necesiten ferificación
+    app.UseMiddleware<Verify>();
+    app.UseMiddleware<Check>();
+
     app.UseCors(habilitarCors);
-    app.MapControllerRoute(name: "default",pattern: "{controller=HOME}/{action=Index}/{id?}");
+    app.MapControllerRoute(name: "default", pattern: "{controller=HOME}/{action=Index}/{id?}");
 
     app.Run();
   }
