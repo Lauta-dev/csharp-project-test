@@ -5,17 +5,17 @@ using System.Globalization;
 using Helper.HttpStatusCodes;
 
 namespace Middleware.CheckTask;
-public class Check : MiddleBase
+public class CheckTasks : MiddleBase
 {
   private readonly RequestDelegate _next;
 
-  public Check(RequestDelegate next) { _next = next; }
+  public CheckTasks(RequestDelegate next) { _next = next; }
 
   public async Task InvokeAsync(HttpContext ctx)
   {
     try
     {
-      if (GetMethod(ctx) != HttpMethods.Post && GetPath(ctx) != "/task/new")
+      if (GetPath(ctx) != "/task/new")
       {
         await _next(ctx);
         return;
@@ -46,7 +46,6 @@ public class Check : MiddleBase
         teacherId = task.teacherId;
         DateTime dateNow = DateTime.Now;
 
-        // TODO: Verificar que la hora sea correcta
         System.Console.WriteLine(new
         {
           createAt = Convert.ToDateTime(task.createAt, new CultureInfo("es-AR")).ToString("dd/MM/yyyy"),

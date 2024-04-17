@@ -18,6 +18,7 @@ class PostClassroom
   {
     bool error = false;
     string pattern = @"^\d+-[A-Z]$";
+    System.Console.WriteLine("asdsa");
 
     foreach (Classrooms classroom in classrooms)
     {

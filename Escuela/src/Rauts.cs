@@ -1,6 +1,4 @@
-
-
-// TODO: Aplicar aqui las demás direciones de las rutas
+// TODO: Aplicar aqui tulas demás direciones de las rutas
 namespace RoutersNames;
 static class DefaultRouts
 {

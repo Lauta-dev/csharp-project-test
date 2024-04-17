@@ -1,56 +1,69 @@
 using Middleware.Base;
 using Helper.ReadBody;
-using Control;
 using Escuela.Models.Aulas;
 using Helper.Respo;
 using Helper.HttpStatusCodes;
+using Interface.Base;
+using Middleware.CheckBody;
 
 namespace Middleware.CheckBodyBeforeAddClassroom;
-public class Verify : MiddleBase
+public class CheckClassrooms
 {
   private readonly RequestDelegate _next;
+  private readonly IBase _base;
 
-  public Verify(RequestDelegate next)
+  public CheckClassrooms(RequestDelegate next, MiddleBase middleBase)
   {
     _next = next;
+    _base = middleBase;
   }
 
   public async Task InvokeAsync(HttpContext ctx)
   {
-    string path = GetPath(ctx);
-    int internalServerError = Codes.InternalServerError;
+    var res = ctx.Response;
     int NotAcceptable = Codes.NotAcceptable;
 
-    if (GetMethod(ctx) == HttpMethods.Post && path == "/classroom/new")
-    {
-      try
-      {
-        // TODO: Si hay valores repetidos en el body, evitar que estos se guarden en la base de datos
-        R<Classrooms[]> a = await ReadBodyInMiddleware<Classrooms[]>.Read(ctx);
-        var d = Ca.Ad(a.anyData);
-        await _next(ctx);
-        return;
-      }
-      catch (System.Text.Json.JsonException ex)
-      {
-        Exceptions(ex, ctx, NotAcceptable, "No se pudo convertir el valor a string");
-        return;
-      }
-      catch (System.InvalidOperationException ex)
-      {
-        Exceptions(ex, ctx, NotAcceptable, "Operación invalida");
-        return;
-      }
-      catch (System.Exception ex)
-      {
-        Exceptions(ex, ctx, internalServerError, "Error del servidor");
-        return;
-      }
-    }
-    else
+    if (_base.GetPath(ctx) != "/classroom/new")
     {
       await _next(ctx);
+      return;
     }
+
+    try
+    {
+      R<Classrooms[]> bodyToClass = await ReadBodyInMiddleware<Classrooms[]>.Read(ctx);
+      Classrooms[] classrooms = bodyToClass.anyData;
+
+      var data = new CheckBody.CheckBody().Check(classrooms);
+
+      if (data.httpCode != 200)
+      {
+        _base.SetStatusCode(ctx, data.httpCode);
+        await res.WriteAsJsonAsync(data.anyData);
+        return;
+      }
+
+      await _next(ctx);
+    }
+    catch (System.Text.Json.JsonException ex)
+    {
+      System.Console.WriteLine(ex);
+      _base.SetStatusCode(ctx, 400);
+      await res.WriteAsJsonAsync(new { NotAcceptable, message = "No se pudo convertir el valor a string" });
+      return;
+    }
+    catch (System.InvalidOperationException ex)
+    {
+      System.Console.WriteLine(ex);
+      _base.SetStatusCode(ctx, 400);
+      await res.WriteAsJsonAsync(new { NotAcceptable, message = "Operación invalida" });
+    }
+    catch (System.Exception ex)
+    {
+      System.Console.WriteLine(ex);
+      _base.SetStatusCode(ctx, 500);
+      await res.WriteAsJsonAsync(new { NotAcceptable, message = "Error del servidor" });
+    };
   }
 }
 

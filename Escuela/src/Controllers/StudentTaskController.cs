@@ -22,12 +22,6 @@ public class Task : Controller
   [HttpPost("/task/new")]
   public object NewClassroom([FromBody] StudentTask[] tasks)
   {
-    foreach (StudentTask s in tasks)
-    {
-      System.Console.WriteLine($"id {s.studentId}");
-      System.Console.WriteLine($"classroomid: {s.ClassroomsId}");
-    }
-
     var a = _req.AddNewTask(tasks);
     return StatusCode(a.httpCode, a.anyData);
   }

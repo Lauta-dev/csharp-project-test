@@ -14,16 +14,15 @@ class Main
     configServices.AddControllers();
     configServices.JsonConfig();
 
-    var habilitarCors = "ha";
-    configServices.Cors(habilitarCors);
+    var MyAllowSpecificOrigins = "cors";
+    configServices.Cors(MyAllowSpecificOrigins);
 
     var app = builder.Build();
 
-    // TODO: Añadir los demás middleware para las demás rutas que necesiten ferificación
-    app.UseMiddleware<Verify>();
-    app.UseMiddleware<Check>();
+    app.UseMiddleware<CheckClassrooms>();
+    app.UseMiddleware<CheckTasks>();
 
-    app.UseCors(habilitarCors);
+    app.UseCors(MyAllowSpecificOrigins);
     app.MapControllerRoute(name: "default", pattern: "{controller=HOME}/{action=Index}/{id?}");
 
     app.Run();

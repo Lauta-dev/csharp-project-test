@@ -63,7 +63,7 @@ get_data() {
 #----------------  Aulas (Classrooms)  ----------------#
 
 #get_data "$baseURL/classroom"
-#post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
+post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
 
 #----------------  Alumnos (Students)  ----------------#
 
@@ -73,7 +73,7 @@ get_data() {
 #----------------  Tareas (Tasks)  ----------------#
 
 #get_data "$baseURL/task"
-post_data "$(cat ./tasks.json)" "$baseURL/task/new"
+#post_data "$(cat ./tasks.json)" "$baseURL/task/new"
 
 #----------------  Profesores (Teachers)  ----------------#
 
