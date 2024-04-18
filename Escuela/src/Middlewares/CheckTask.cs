@@ -3,6 +3,7 @@ using Helper.ReadBody;
 using TaskCamelCase;
 using System.Globalization;
 using Helper.HttpStatusCodes;
+using Helper.CompareDateTime;
 
 namespace Middleware.CheckTask;
 public class CheckTasks : MiddleBase
@@ -24,18 +25,25 @@ public class CheckTasks : MiddleBase
       var body = await ReadBodyInMiddleware<List<Camel>>.Read(ctx);
       int badRequest = Codes.BadRequest;
       var response = ctx.Response;
+      DateTime dateNow = DateTime.Now;
 
       string title;
       string content;
       int important;
       string studentId;
       string teacherId;
+      DateTime createAt;
+      DateTime limitAt;
 
       async void responseAError(int statusCode = 50, string message = "No se proprociono el mensaje")
       {
         response.StatusCode = statusCode;
         await ctx.Response.WriteAsJsonAsync(new { message, statusCode });
       };
+
+      int ToneIsEarlierThanTtwo = -1;
+      int ToneIsTheSameAsTtwo = 0;
+      int ToneIsLatesThanTtwo = 1;
 
       foreach (Camel task in body.anyData)
       {
@@ -44,7 +52,8 @@ public class CheckTasks : MiddleBase
         important = task.important;
         studentId = task.studentId;
         teacherId = task.teacherId;
-        DateTime dateNow = DateTime.Now;
+        createAt = task.createAt;
+        limitAt = task.limitAt;
 
         System.Console.WriteLine(new
         {
@@ -55,19 +64,41 @@ public class CheckTasks : MiddleBase
         // Comparar
         // DateTime.Compare("t1", "t2")
         // --------
-        // si ti >  t2 =  1
-        // si t1 <  t2 = -1
-        // si ti == t2 =  0
+        // if ti >  t2 =  1 - t1 es mayor que t2
+        // if t1 <  t2 = -1 - ti es igual que t2
+        // if ti == t2 =  0 - t1 es menor que t2
+        // --------
+        // Por defecto, se compara los dias, meses, años, hs, min, seg, miliseg
+        // por ende a cada parámetro ha que añadirle .Date
 
-        // t1 == t2 = 0
-        int nowIsEqualAtCreateAt = DateTime.Compare(dateNow.Date, task.createAt.Date);
-        string f = "dd/MM/yyyy";
+        // TODO: Crear un programita que compare fechas.
+        // - Tiene que ser una clase con dos métodos y estos devuelven bool
+        // - El primer método  : si T1 > T2
+        // - El segundo método : si T2 > T1
+
+        // Comparar la fecha actual con la que viene de la tarea
+        int nowIsEqualAtCreateAt = DateTime.Compare(dateNow.Date, createAt.Date);
+
+        // Comparar la fecha de creación de la tarea y la fecha de finalizacion
+        int compareCreteAtAndLimitAt = DateTime.Compare(dateNow.Date, limitAt.Date);
+
+        int ifLimitAtIsLess = DateTime.Compare(limitAt, createAt);
+
+        System.Console.WriteLine("Tuki {0}", CompareIf.A(dateNow.Date, createAt.Date));
 
         System.Console.WriteLine(nowIsEqualAtCreateAt);
+        System.Console.WriteLine(compareCreteAtAndLimitAt);
+        System.Console.WriteLine(ifLimitAtIsLess);
 
-        if (nowIsEqualAtCreateAt == 1)
+        if (!CompareIf.A(dateNow.Date, createAt.Date))
         {
-          responseAError(badRequest, "No se puede asignar una tarea con una fecha pasada");
+          responseAError(badRequest, "La fecha de creación de la tarea es menor a la de finalizacion");
+          return;
+        }
+
+        if (compareCreteAtAndLimitAt == ToneIsLatesThanTtwo || compareCreteAtAndLimitAt == ToneIsTheSameAsTtwo)
+        {
+          responseAError(badRequest, "(._.)");
           return;
         }
 
@@ -77,7 +108,7 @@ public class CheckTasks : MiddleBase
           return;
         }
 
-         if (!DateTime.TryParse(task.limitAt.ToString(), out _))
+        if (!DateTime.TryParse(task.limitAt.ToString(), out _))
         {
           responseAError(badRequest, "La fecha de inicio no tiene el formato valido");
           return;
