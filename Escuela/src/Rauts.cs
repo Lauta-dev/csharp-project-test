@@ -8,4 +8,5 @@ static class DefaultRouts
 
   // * POST
   public const string ClassroomNew = "/classroom/new";
+  public const string ClassroomDelete = "/classroom/delete";
 }
