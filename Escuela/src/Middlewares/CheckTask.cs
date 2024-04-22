@@ -1,4 +1,3 @@
-using Middleware.Base;
 using Helper.ReadBody;
 using TaskCamelCase;
 using System.Globalization;
@@ -60,21 +59,6 @@ public class CheckTasks : MiddleBase
           createAt = Convert.ToDateTime(task.createAt, new CultureInfo("es-AR")).ToString("dd/MM/yyyy"),
           limitAt = Convert.ToDateTime(task.limitAt, new CultureInfo("es-AR"))
         });
-
-        // Comparar
-        // DateTime.Compare("t1", "t2")
-        // --------
-        // if ti >  t2 =  1 - t1 es mayor que t2
-        // if t1 <  t2 = -1 - ti es igual que t2
-        // if ti == t2 =  0 - t1 es menor que t2
-        // --------
-        // Por defecto, se compara los dias, meses, años, hs, min, seg, miliseg
-        // por ende a cada parámetro ha que añadirle .Date
-
-        // TODO: Crear un programita que compare fechas.
-        // - Tiene que ser una clase con dos métodos y estos devuelven bool
-        // - El primer método  : si T1 > T2
-        // - El segundo método : si T2 > T1
 
         // Comparar la fecha actual con la que viene de la tarea
         int nowIsEqualAtCreateAt = DateTime.Compare(dateNow.Date, createAt.Date);

@@ -7,6 +7,8 @@ public class PostTeacher
 {
   public static R S(SchoolCtx db, TeacherModel[] teachers)
   {
+
+    System.Console.WriteLine("hola");
     for (int i = 0; i < teachers.Length; i++)
     {
       var teacher = teachers[i];
@@ -14,9 +16,6 @@ public class PostTeacher
 
       if (existeClassroom is null)
         return new ResponseBuilder("El aula no existe", 400).GetResult();
-
-      if (teacher.Age < 20)
-        return new ResponseBuilder("El profesor debe tener más de 20 años", 404).GetResult();
     }
 
     db.teacher.AddRange(teachers);

@@ -1,5 +1,4 @@
 using ConsoleApp.PostgreSQL;
-using System.Text.Json;
 
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
@@ -14,8 +13,6 @@ using TeacherManagement;
 using SchoolManagement.Teacher;
 
 using Interface.Base;
-using Middleware.Base;
-
 
 namespace Escuela.Configuration
 {
@@ -45,11 +42,11 @@ namespace Escuela.Configuration
 
     public void AddScope()
     {
+      services.AddScoped<MiddleBase>();
       services.AddScoped<IRequestAlumno, AlumnoService>();
       services.AddScoped<ISchoolManagementClassroom, ClassroomService>();
       services.AddScoped<ISchoolManagementTask, TaskService>();
       services.AddScoped<ISchoolManagementTeacher, TeacherServieces>();
-      services.AddScoped<MiddleBase>();
     }
 
     public void AddControllers()

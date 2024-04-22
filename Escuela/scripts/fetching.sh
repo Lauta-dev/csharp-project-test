@@ -26,6 +26,9 @@ my_json="$(bun run ./changeIdInStudents.ts "ecf9f4c5-ce98-4e28-bf39-890d1ff83e22
 # Retorna:
 #   La respuesta del servidor HTTP.
 post_data() {
+  echo " ------------------------------------------"
+  echo " POST in $2"
+  echo " ------------------------------------------"
   curl -i -Ss -X "POST" \
     -A "$user_agent" \
     -H "$headers" \
@@ -54,6 +57,10 @@ post_data() {
 get_data() {
   # TODO: Verificar que el servidor me devuelve un JSON e darle formato con 'jq', en caso contrario nada
 
+  echo " ------------------------------------------"
+  echo " GET in $1"
+  echo " ------------------------------------------"
+  
   curl -Ss -X "GET" \
     -A "$user_agent" \
     --compressed \
@@ -68,7 +75,7 @@ get_data() {
 #----------------  Alumnos (Students)  ----------------#
 
 #get_data "$baseURL/students"
-post_data "$my_json" "$baseURL/students/add"
+#post_data "$my_json" "$baseURL/students/add"
 
 #----------------  Tareas (Tasks)  ----------------#
 
@@ -78,6 +85,6 @@ post_data "$my_json" "$baseURL/students/add"
 #----------------  Profesores (Teachers)  ----------------#
 
 #get_data "$baseURL/profe"
-#post_data "$(cat ./teacher.json)" "$baseURL/profe/new"
+post_data "$(cat ./teacher.json)" "$baseURL/teacher/new"
 
 #---------------------------------------------------------#

@@ -1,6 +1,7 @@
 using Escuela.Configuration;
 using Middleware.CheckBodyBeforeAddClassroom;
 using Middleware.CheckTask;
+using Middleware.CheckTeacher;
 
 namespace Principal;
 class Main
@@ -21,6 +22,7 @@ class Main
 
     app.UseMiddleware<CheckClassrooms>();
     app.UseMiddleware<CheckTasks>();
+    app.UseMiddleware<CheckTeacherBody>();
 
     app.UseCors(MyAllowSpecificOrigins);
     app.MapControllerRoute(name: "default", pattern: "{controller=HOME}/{action=Index}/{id?}");

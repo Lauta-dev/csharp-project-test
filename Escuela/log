@@ -1,0 +1,92 @@
+dotnet watch 🔥 Hot reload enabled. For a list of supported edits, see https://aka.ms/dotnet/hot-reload.
+  💡 Press "Ctrl + R" to restart.
+dotnet watch 🔧 Building...
+  Determinando los proyectos que se van a restaurar...
+  Todos los proyectos están actualizados para la restauración.
+  Escuela -> /home/lauta/dev/dotNet/project-test/Escuela/bin/Debug/net8.0/Escuela.dll
+dotnet watch 🚀 Started
+crit: Microsoft.AspNetCore.Hosting.Diagnostics[6]
+      Application startup exception
+      System.InvalidOperationException: Unable to resolve service for type 'MiddleBase' while attempting to activate 'Middleware.CheckBodyBeforeAddClassroom.CheckClassrooms'.
+         at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+         at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+         at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+         at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+         at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+         at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+fail: Microsoft.Extensions.Hosting.Internal.Host[11]
+      Hosting failed to start
+      System.InvalidOperationException: Unable to resolve service for type 'MiddleBase' while attempting to activate 'Middleware.CheckBodyBeforeAddClassroom.CheckClassrooms'.
+         at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+         at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+         at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+         at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+         at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+         at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+         at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+         at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+dotnet watch ⏳ Waiting for a file to change before restarting dotnet...
+dotnet watch 🛑 Shutdown requested. Press Ctrl+C again to force exit.
+dotnet watch 🔥 Hot reload enabled. For a list of supported edits, see https://aka.ms/dotnet/hot-reload.
+  💡 Press "Ctrl + R" to restart.
+dotnet watch 🔧 Building...
+  Determinando los proyectos que se van a restaurar...
+  Todos los proyectos están actualizados para la restauración.
+/home/lauta/dev/dotNet/project-test/Escuela/Migrations/20240408155453_f.cs(9,26): warning CS8981: El nombre de tipo 'f' solo contiene caracteres ASCII en minúsculas. Estos nombres pueden quedar reservados para el idioma. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/Migrations/20240408155453_f.Designer.cs(16,19): warning CS8981: El nombre de tipo 'f' solo contiene caracteres ASCII en minúsculas. Estos nombres pueden quedar reservados para el idioma. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/Migrations/20240408155740_tuki.cs(8,26): warning CS8981: El nombre de tipo 'tuki' solo contiene caracteres ASCII en minúsculas. Estos nombres pueden quedar reservados para el idioma. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/Migrations/20240408155740_tuki.Designer.cs(16,19): warning CS8981: El nombre de tipo 'tuki' solo contiene caracteres ASCII en minúsculas. Estos nombres pueden quedar reservados para el idioma. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/Middlewares/di/Base.cs(12,21): warning CS8625: No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Teacher.cs(11,17): warning CS8618: El elemento propiedad "ClassroomsId" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Teacher.cs(15,17): warning CS8618: El elemento propiedad "SchoolSubject" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Teacher.cs(23,35): warning CS8618: El elemento propiedad "studentTask" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(14,17): warning CS8618: El elemento propiedad "Title" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(17,17): warning CS8618: El elemento propiedad "Content" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(36,17): warning CS8618: El elemento propiedad "studentId" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(37,18): warning CS8618: El elemento propiedad "student" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(41,17): warning CS8618: El elemento propiedad "teacherId" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(42,36): warning CS8618: El elemento propiedad "teacher" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(46,17): warning CS8618: El elemento propiedad "ClassroomsId" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Task.cs(47,21): warning CS8618: El elemento propiedad "classroom" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Student.cs(9,17): warning CS8618: El elemento propiedad "ClassroomsId" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Student.cs(10,35): warning CS8618: El elemento propiedad "studentTasks" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Person.cs(12,17): warning CS8618: El elemento propiedad "Name" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Person.cs(15,17): warning CS8618: El elemento propiedad "LastName" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Classroom.cs(12,17): warning CS8618: El elemento propiedad "Aula" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Classroom.cs(15,38): warning CS8618: El elemento propiedad "Students" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Classroom.cs(18,49): warning CS8618: El elemento propiedad "Teachers" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/entitys/Classroom.cs(20,35): warning CS8618: El elemento propiedad "st" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento propiedad como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/Controllers/StudentController.cs(50,52): warning CS8602: Desreferencia de una referencia posiblemente NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/Response.cs(30,17): warning CS8618: El elemento campo "comment" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/Response.cs(32,17): warning CS8618: El elemento campo "anyData" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/Response.cs(15,10): warning CS8618: El elemento campo "AnyData" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/ReadBodyInMiddleware.cs(17,11): warning CS8600: Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/ReadBodyInMiddleware.cs(20,57): warning CS8604: Posible argumento de referencia nulo para el parámetro "anyData" en "ResponseBuilder<T>.ResponseBuilder(string comment, int httpCode, T anyData)". [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/oR.cs(31,17): warning CS8618: El elemento campo "comment" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/oR.cs(33,12): warning CS8618: El elemento campo "anyData" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/helper/oR.cs(16,10): warning CS8618: El elemento campo "AnyData" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declarar el elemento campo como que admite un valor NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/model/PostStudents.cs(103,11): warning CS8602: Desreferencia de una referencia posiblemente NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/model/PostStudents.cs(56,13): warning CS0472: El resultado de la expresión siempre es 'false' porque un valor del tipo 'int' nunca es igual a 'NULL' de tipo 'int?' [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/model/PostClassroom.cs(20,12): warning CS0219: La variable 'pattern' está asignada pero su valor nunca se usa [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/SchoolCtx.cs(49,40): warning CS8602: Desreferencia de una referencia posiblemente NULL. [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+/home/lauta/dev/dotNet/project-test/Escuela/src/Middlewares/CheckTask.cs(43,11): warning CS0219: La variable 'ToneIsEarlierThanTtwo' está asignada pero su valor nunca se usa [/home/lauta/dev/dotNet/project-test/Escuela/Escuela.csproj]
+  Escuela -> /home/lauta/dev/dotNet/project-test/Escuela/bin/Debug/net8.0/Escuela.dll
+dotnet watch 🚀 Started
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5000
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/lauta/dev/dotNet/project-test/Escuela
+dotnet watch 🛑 Shutdown requested. Press Ctrl+C again to force exit.
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+dotnet watch 🔥 Hot reload enabled. For a list of supported edits, see https://aka.ms/dotnet/hot-reload.
+  💡 Press "Ctrl + R" to restart.
+dotnet watch 🔧 Building...
+  Determinando los proyectos que se van a restaurar...
+  Todos los proyectos están actualizados para la restauración.
+  Escuela -> /home/lauta/dev/dotNet/project-test/Escuela/bin/Debug/net8.0/Escuela.dll
+dotnet watch 🛑 Shutdown requested. Press Ctrl+C again to force exit.

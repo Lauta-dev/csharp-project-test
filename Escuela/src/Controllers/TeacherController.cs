@@ -23,6 +23,7 @@ public class Teacher : Controller
   public object NewClassroom([FromBody] TeacherModel[] teacher)
   {
     var data = Req.AddNewTeacher(teacher);
+    System.Console.WriteLine(data.httpCode);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 }

@@ -1,4 +1,5 @@
 namespace Interface.Base;
+
 interface IBase
 {
   public string GetPath(HttpContext ctx);

@@ -1,9 +1,9 @@
 [{
-  "name": "marcos",
-  "lastName": "moodle",
-  "age": "21",
+  "Name": "asd",
+  "LastName": "moodle",
+  "Age": 12,
   "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
-  "Schedule": "2024-04-08T15:05:05.699Z",
-  "ClassroomsId": "a28dfaf8-6bb3-4069-8ec5-b35f67ecc8e9",
+  "Schedule": "2024-04-22T12:37:00.000Z",
+  "ClassroomsId": "ecf9f4c5-ce98-4e28-bf39-890d1ff83e22",
   "SchoolSubject": "Informatica"
 }]

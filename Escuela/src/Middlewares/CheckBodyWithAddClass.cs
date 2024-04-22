@@ -1,10 +1,8 @@
-using Middleware.Base;
 using Helper.ReadBody;
 using Escuela.Models.Aulas;
 using Helper.Respo;
 using Helper.HttpStatusCodes;
 using Interface.Base;
-using Middleware.CheckBody;
 
 namespace Middleware.CheckBodyBeforeAddClassroom;
 public class CheckClassrooms
@@ -22,7 +20,6 @@ public class CheckClassrooms
   {
     var res = ctx.Response;
     int NotAcceptable = Codes.NotAcceptable;
-
     if (_base.GetPath(ctx) != "/classroom/new")
     {
       await _next(ctx);

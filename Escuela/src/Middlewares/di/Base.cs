@@ -1,6 +1,5 @@
 using Interface.Base;
 
-namespace Middleware.Base;
 public class MiddleBase: IBase
 {
   public string GetPath(HttpContext ctx) => ctx.Request.Path;
