@@ -38,7 +38,7 @@ public class Classroom : Controller
   [Route((DefaultRouts.ClassroomDelete))]
   public object DeleteClassroom(string id)
   {
-    // TODO: Llamar a una método para eliminar la clase
-    return id;
+    var data = _req.RemoveClassrooms(id);
+    return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 }
