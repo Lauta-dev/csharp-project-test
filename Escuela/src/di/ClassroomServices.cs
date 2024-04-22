@@ -23,8 +23,9 @@ class ClassroomService : ISchoolManagementClassroom
     return new PostClassroom(_db).Classroom(classroom);
   }
 
-  public R RemoveClassrooms(string id)
+  async public Task<R> RemoveClassrooms(string id)
   {
-    return new DeleteClassroom(_db).Remove(id);
+    var data = await new DeleteClassroom(_db).Remove(id);
+    return data;
   }
 }

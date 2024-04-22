@@ -6,5 +6,5 @@ public interface ISchoolManagementClassroom
 {
   public object GetClassrooms();
   public R AddNewClassrooms(Classrooms[] classroom);
-  public R RemoveClassrooms(string id);
+  public Task<R> RemoveClassrooms(string id);
 }

@@ -12,10 +12,9 @@ class DeleteClassroom
     _db = db;
   }
   
-  public R Remove(string id)
+  async public Task<R> Remove(string id)
   {
-    var db = _db;
-    var checkUser = db.classroom.FirstOrDefault(x => x.Id == id);
+    var checkUser = _db.classroom.FirstOrDefault(x => x.Id == id);
     string message;
     int statusCode;
 
@@ -25,6 +24,9 @@ class DeleteClassroom
       statusCode = Codes.NotFound;
       return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult(); 
     }
+
+    _db.classroom.Remove(checkUser);
+    await _db.SaveChangesAsync();
 
     message = "La clase fue eliminada";
     statusCode = Codes.Ok;

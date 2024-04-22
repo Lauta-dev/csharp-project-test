@@ -78,7 +78,7 @@ remove_data () {
 
 #get_data "$baseURL/classroom"
 #post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
-remove_data $baseURL/classroom/delete?id="2a87055c-8146-424c-beab-8590622ffa6e"
+remove_data $baseURL/classroom/delete?id="90f8cdb9-3b1a-45ad-b8eb-7df5cb7ba9c9"
 
 #----------------  Alumnos (Students)  ----------------#
 
