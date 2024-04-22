@@ -67,10 +67,18 @@ get_data() {
     "$1"
 }
 
+remove_data () {
+  curl -i -Ss -X "DELETE" \
+    -A "$user_agent" \
+    --compressed \
+    "$1"
+}
+
 #----------------  Aulas (Classrooms)  ----------------#
 
 #get_data "$baseURL/classroom"
 #post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
+remove_data $baseURL/classroom/delete?id="2a87055c-8146-424c-beab-8590622ffa6e"
 
 #----------------  Alumnos (Students)  ----------------#
 
@@ -85,6 +93,6 @@ get_data() {
 #----------------  Profesores (Teachers)  ----------------#
 
 #get_data "$baseURL/profe"
-post_data "$(cat ./teacher.json)" "$baseURL/teacher/new"
+#post_data "$(cat ./teacher.json)" "$baseURL/teacher/new"
 
 #---------------------------------------------------------#
