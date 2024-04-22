@@ -33,4 +33,12 @@ public class Classroom : Controller
       return "nose";
     }
   }
+
+  [HttpDelete]
+  [Route((DefaultRouts.ClassroomDelete))]
+  public object DeleteClassroom(string id)
+  {
+    // TODO: Llamar a una método para eliminar la clase
+    return id;
+  }
 }
