@@ -4,7 +4,7 @@ port=5000
 baseURL="http://localhost:$port"
 headers="Content-Type: application/json"
 user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-my_json="$(bun run ./changeIdInStudents.ts "a28dfaf8-6bb3-4069-8ec5-b35f67ecc8e9" )"
+my_json="$(bun run ./changeIdInStudents.ts "ecf9f4c5-ce98-4e28-bf39-890d1ff83e22" ) "
 
 #-------------------------------#
 
@@ -63,12 +63,12 @@ get_data() {
 #----------------  Aulas (Classrooms)  ----------------#
 
 #get_data "$baseURL/classroom"
-post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
+#post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
 
 #----------------  Alumnos (Students)  ----------------#
 
 #get_data "$baseURL/students"
-#post_data "$my_json" "$baseURL/students/add"
+post_data "$my_json" "$baseURL/students/add"
 
 #----------------  Tareas (Tasks)  ----------------#
 
@@ -81,5 +81,3 @@ post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
 #post_data "$(cat ./teacher.json)" "$baseURL/profe/new"
 
 #---------------------------------------------------------#
-
-
