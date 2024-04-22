@@ -5,6 +5,8 @@ using Escuela.Models.Aulas;
 using Helper.Responses;
 using ConsoleApp.PostgreSQL;
 
+using Model.DeleteClassrooms;
+
 namespace ClassroomManagement;
 
 class ClassroomService : ISchoolManagementClassroom
@@ -19,5 +21,10 @@ class ClassroomService : ISchoolManagementClassroom
   public R AddNewClassrooms(Classrooms[] classroom)
   {
     return new PostClassroom(_db).Classroom(classroom);
+  }
+
+  public R RemoveClassrooms(string id)
+  {
+    return new DeleteClassroom(_db).Remove(id);
   }
 }
