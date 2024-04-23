@@ -9,4 +9,5 @@ public interface IRequestAlumno
   public object GetStudentById(string id);
   public object GetStudentByClassroom(string id, int limit);
   public R AddNewStudent(Student[] alumnos);
+  public Task<R> RemoveStudent(string id);
 }

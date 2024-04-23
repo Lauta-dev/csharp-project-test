@@ -3,6 +3,11 @@ namespace RoutersNames;
 static class DefaultRouts
 {
   /*
+   * Students
+   */
+  public const string RemoveStudent = "/students/delete";
+
+  /*
    * Classrooms
    */
 

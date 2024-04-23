@@ -11,6 +11,8 @@ using Model.PostStudents;
 
 using Helper.Responses;
 
+using Model.DeleteStudents;
+
 namespace StudentManagement;
 class AlumnoService : IRequestAlumno
 {
@@ -36,4 +38,9 @@ class AlumnoService : IRequestAlumno
     return new PostStudents(_db).S(alumnos);
   }
   
+  async public Task<R> RemoveStudent(string id)
+  {
+    var data = await new DeleteStudent(_db).Delete(id);
+    return data;
+  }
 }

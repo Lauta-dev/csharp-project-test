@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.AlumnoRe;
 using Escuela.Models.Alumno;
 using Helper.HttpStatusCodes;
+using RoutersNames;
 
 namespace Students.Controllers;
 public class Students : Controller
@@ -49,5 +50,13 @@ public class Students : Controller
     {
       return StatusCode(Codes.InternalServerError, e.InnerException.Message);
     }
+  }
+
+  [HttpDelete]
+  [Route(DefaultRouts.RemoveStudent)]
+  async public Task<object> Delete(string id)
+  {
+    var data = await _req.RemoveStudent(id);
+    return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 }
