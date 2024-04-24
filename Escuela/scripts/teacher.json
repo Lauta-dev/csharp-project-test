@@ -1,9 +1,27 @@
 [{
-  "Name": "asd",
-  "LastName": "moodle",
-  "Age": 12,
+  "Name": "Thiago",
+  "LastName": "Correa",
+  "Age": 23,
   "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
   "Schedule": "2024-04-22T12:37:00.000Z",
-  "ClassroomsId": "ecf9f4c5-ce98-4e28-bf39-890d1ff83e22",
+  "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b",
+  "SchoolSubject": "Informatica"
+},
+{
+  "Name": "Facundo",
+  "LastName": "Diaz",
+  "Age": 25,
+  "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
+  "Schedule": "2024-04-22T12:37:00.000Z",
+  "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b",
+  "SchoolSubject": "Informatica"
+},
+{
+  "Name": "Jorde",
+  "LastName": "Correa",
+  "Age": 20,
+  "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
+  "Schedule": "2024-04-22T12:37:00.000Z",
+  "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b",
   "SchoolSubject": "Informatica"
 }]

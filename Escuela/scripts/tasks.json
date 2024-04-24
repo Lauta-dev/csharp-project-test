@@ -1,13 +1,22 @@
 [
   {
-    "title": "Bash",    
-    "content": "Crear un archivo .sh para formatear un JSON",
-    "important": 1,
-    "createAt": "2024-04-12T20:54:58.292Z",
-    "limitAt": "2024-04-18T20:54:00.000Z",
-
-    "studentId": "64c7ecf5-e91f-45bc-80bc-130c0d65b9dd",
-    "teacherId": "1b492ca7-4a77-4331-b064-f0df4c9e4204",
-    "ClassroomsId": "a28dfaf8-6bb3-4069-8ec5-b35f67ecc8e9"
+    "title": "Poo con Lua",
+    "content": "Usa los conceptos basicos de POO en Lua",
+    "important": 0,
+    "createAt": "2024-04-23T14:52:35.453Z",
+    "limitAt": "2024-04-26T14:52:00.000Z",
+    "studentId": "b2de8cfe-2207-48c4-b10d-844124f8e9f8",
+    "teacherId": "a800c720-92f6-4e9e-b8bb-f6da8dc62af4",
+    "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
+  },
+  {
+    "title": "JavaScript en el navegador",
+    "content": "Crea un boton rojo desde JavaScript manipulando el dom",
+    "important": 0,
+    "createAt": "2024-04-23T14:52:35.453Z",
+    "limitAt": "2024-05-09T14:52:00.000Z",
+    "studentId": "fcd68805-9fc1-4019-ada2-d031354bba66",
+    "teacherId": "a800c720-92f6-4e9e-b8bb-f6da8dc62af4",
+    "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
   }
 ]

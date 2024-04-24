@@ -8,7 +8,6 @@ public class StudentTasks
   public static R S(SchoolCtx db, StudentTask[] studentTasks)
   {
     db.task.AddRange(studentTasks);
-
     db.SaveChanges();
     return new ResponseBuilder("Add new task", 200, studentTasks).GetResult();
   }

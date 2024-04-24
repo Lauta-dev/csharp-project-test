@@ -128,8 +128,8 @@ public class CheckTasks : MiddleBase
           return;
         }
       }
-
-      await response.WriteAsJsonAsync(body.anyData);
+      
+      await _next(ctx);
       return;
     }
     catch (System.Text.Json.JsonException ex)

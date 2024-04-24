@@ -84,12 +84,16 @@ remove_data () {
 
 #get_data "$baseURL/students"
 #post_data "$my_json" "$baseURL/students/add"
-remove_data $baseURL/students/delete?id="da"
+#remove_data $baseURL/students/delete?id="da"
 
 #----------------  Tareas (Tasks)  ----------------#
 
+task_id="5df91d0e-5116-4356-aec4-11680408f13e"
+teacher_id="a800c720-92f6-4e9e-b8bb-f6da8dc62af4"
+
 #get_data "$baseURL/task"
 #post_data "$(cat ./tasks.json)" "$baseURL/task/new"
+remove_data "$baseURL/task/delete?taskId=$task_id&teacherId=$teacher_id"
 
 #----------------  Profesores (Teachers)  ----------------#
 

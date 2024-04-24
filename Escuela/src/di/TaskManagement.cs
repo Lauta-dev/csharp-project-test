@@ -6,4 +6,5 @@ public interface ISchoolManagementTask
 {
   public R AddNewTask(StudentTask[] studentTasks);
   public R GetTasks();
+  public Task<R> RemoveTask(string taskId, string teacherId);
 }

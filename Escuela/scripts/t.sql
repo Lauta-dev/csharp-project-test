@@ -16,6 +16,27 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE ONLY public.teacher DROP CONSTRAINT "FK_teacher_classrooms_ClassroomsId";
+ALTER TABLE ONLY public.task DROP CONSTRAINT "FK_task_teacher_teacher_id";
+ALTER TABLE ONLY public.task DROP CONSTRAINT "FK_task_student_student_id";
+ALTER TABLE ONLY public.task DROP CONSTRAINT "FK_task_classrooms_classroom_id";
+ALTER TABLE ONLY public.student DROP CONSTRAINT "FK_student_classrooms_ClassroomsId";
+DROP INDEX public."IX_teacher_ClassroomsId";
+DROP INDEX public."IX_task_teacher_id";
+DROP INDEX public."IX_task_student_id";
+DROP INDEX public."IX_task_classroom_id";
+DROP INDEX public."IX_student_ClassroomsId";
+ALTER TABLE ONLY public.teacher DROP CONSTRAINT "PK_teacher";
+ALTER TABLE ONLY public.task DROP CONSTRAINT "PK_task";
+ALTER TABLE ONLY public.student DROP CONSTRAINT "PK_student";
+ALTER TABLE ONLY public.classrooms DROP CONSTRAINT "PK_classrooms";
+ALTER TABLE ONLY public."__EFMigrationsHistory" DROP CONSTRAINT "PK___EFMigrationsHistory";
+DROP TABLE public.teacher;
+DROP TABLE public.task;
+DROP TABLE public.student;
+DROP TABLE public.classrooms;
+DROP TABLE public."__EFMigrationsHistory";
+DROP TYPE public.mood;
 --
 -- Name: mood; Type: TYPE; Schema: public; Owner: postgres
 --
@@ -198,8 +219,6 @@ f936d2ac-c26c-410f-ad0f-1d53bd7be0e3	Bash	Crear un script de Bash para controlar
 386ff583-02c8-451d-9e36-77654131458d	React	Creación de una web app para ver el tiempo	0	2024-04-23 11:52:35.453-03	2024-04-26 11:52:00-03	b2de8cfe-2207-48c4-b10d-844124f8e9f8	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
 a80ec428-564a-4f7b-a05a-f23a0cd9991c	Bash	Crear un script de Bash para controlar el volumen del equipo usando el comando `pamixer`	0	2024-04-23 11:52:35.453-03	2024-04-30 11:52:00-03	b2de8cfe-2207-48c4-b10d-844124f8e9f8	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
 bd3904f3-7b10-4f46-9828-7cc3d1debd3c	JavaScript	Feching de datos	0	2024-04-23 11:52:35.453-03	2024-05-09 11:52:00-03	fcd68805-9fc1-4019-ada2-d031354bba66	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
-58f1c3a9-4536-43ec-8312-858724343ca1	JavaScript en el navegador	Crea un boton rojo desde JavaScript manipulando el dom	0	2024-04-23 11:52:35.453-03	2024-05-09 11:52:00-03	fcd68805-9fc1-4019-ada2-d031354bba66	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
-5df91d0e-5116-4356-aec4-11680408f13e	Poo con Lua	Usa los conceptos basicos de POO en Lua	0	2024-04-23 11:52:35.453-03	2024-04-30 11:52:00-03	b2de8cfe-2207-48c4-b10d-844124f8e9f8	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
 987d5640-f21a-481e-9b8f-192ce0bb60bc	Explicación y compresion sobre GNU	Linux y GNU/Linux son lo mismo	0	2024-04-23 11:52:35.453-03	2024-04-26 11:52:00-03	b2de8cfe-2207-48c4-b10d-844124f8e9f8	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
 72d61543-ed43-4475-99ae-6f2a65c3e1e9	JavaScript en el navegador	Crea un boton rojo desde JavaScript manipulando el dom	0	2024-04-23 11:52:35.453-03	2024-05-09 11:52:00-03	fcd68805-9fc1-4019-ada2-d031354bba66	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
 dafcd2b9-8556-450f-b2fd-90533b3d79b3	Poo con Lua	Usa los conceptos basicos de POO en Lua	0	2024-04-23 11:52:35.453-03	2024-04-26 11:52:00-03	b2de8cfe-2207-48c4-b10d-844124f8e9f8	a800c720-92f6-4e9e-b8bb-f6da8dc62af4	d7fbbe3f-e107-4ad0-914a-a30d6a741c8b
