@@ -19,8 +19,8 @@ public class Teacher : Controller
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
 
-  [HttpPost("/teacher/new")]
-  public object NewClassroom([FromBody] TeacherModel[] teacher)
+  [HttpPost]
+  public object New([FromBody] TeacherModel[] teacher)
   {
     var data = Req.AddNewTeacher(teacher);
     System.Console.WriteLine(data.httpCode);

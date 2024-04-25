@@ -35,8 +35,7 @@ public class Classroom : Controller
   }
 
   [HttpDelete]
-  [Route((DefaultRouts.ClassroomDelete))]
-  async public Task<object> DeleteClassroom(string id)
+  async public Task<object> Delete(string id)
   {
     var data = await _req.RemoveClassrooms(id);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);

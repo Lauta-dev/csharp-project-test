@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.AlumnoRe;
 using Escuela.Models.Alumno;
 using Helper.HttpStatusCodes;
-using RoutersNames;
 
 namespace Students.Controllers;
 public class Students : Controller
@@ -19,14 +18,14 @@ public class Students : Controller
     return _req.GetStudents();
   }
 
-  [HttpGet("/students/one")]
-  public object Student(string id)
+  [HttpGet]
+  public object One(string id)
   {
     return _req.GetStudentById(id);
   }
 
-  [HttpGet("/students/mul")]
-  public object Student(
+  [HttpGet]
+  public object Mul(
     [FromQuery(Name = "id")] string id,
     [FromQuery(Name = "limit")] int limit
   )
@@ -34,8 +33,8 @@ public class Students : Controller
     return _req.GetStudentByClassroom(id, limit);
   }
 
-  [HttpPost("/students/add")]
-  public object A([FromBody] Student[] alumno)
+  [HttpPost]
+  public object New([FromBody] Student[] alumno)
   {
     try
     {
@@ -53,7 +52,6 @@ public class Students : Controller
   }
 
   [HttpDelete]
-  [Route(DefaultRouts.RemoveStudent)]
   async public Task<object> Delete(string id)
   {
     var data = await _req.RemoveStudent(id);

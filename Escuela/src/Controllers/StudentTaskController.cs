@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Task;
 using Escuela.Models.Tarea;
-using RoutersNames;
 
 namespace StudentTaskc.Controllers;
 
@@ -20,16 +19,15 @@ public class Task : Controller
     return StatusCode(a.httpCode, a.anyData);
   }
 
-  [HttpPost("/task/new")]
-  public object NewClassroom([FromBody] StudentTask[] tasks)
+  [HttpPost]
+  public object New([FromBody] StudentTask[] tasks)
   {
     var a = _req.AddNewTask(tasks);
     return StatusCode(a.httpCode, a.anyData);
   }
 
   [HttpDelete]
-  [Route(DefaultRouts.RemoveTask)]
-  async public Task<object> RemoveTask(string taskId, string teacherId)
+  async public Task<object> Remove(string taskId, string teacherId)
   {
     var data = await _req.RemoveTask(taskId, teacherId);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
