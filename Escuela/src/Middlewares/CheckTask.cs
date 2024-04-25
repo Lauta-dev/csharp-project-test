@@ -3,6 +3,7 @@ using TaskCamelCase;
 using Helper.HttpStatusCodes;
 using Helper.Responses;
 using Interface.Base;
+using Middleware.Error;
 
 namespace Middleware.CheckTask;
 public class CheckTasks : MiddleBase
@@ -29,7 +30,15 @@ public class CheckTasks : MiddleBase
     ResponseModel GenerateResponseModel(string message, int statusCode)
     {
       _base.SetStatusCode(ctx, statusCode);
-      return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
+      return new ResponseBuilder(
+        message,
+        statusCode,
+        new
+        {
+          message,
+          statusCode
+        }
+      ).GetResult();
     }
 
     try
@@ -38,11 +47,12 @@ public class CheckTasks : MiddleBase
 
       var check = CheckObject(body.anyData);
 
-
       if (check.httpCode != Codes.Ok)
       {
-        _base.SetStatusCode(ctx, Codes.BadRequest);
+        var err = GenerateResponseModel(check.comment, Codes.BadRequest);
+        await res.WriteAsJsonAsync(err.anyData);
 
+        return;
       }
 
       await _next(ctx);
@@ -89,51 +99,51 @@ public class CheckTasks : MiddleBase
       // Validar la fecha de creación
       if (createAt > DateTime.Now)
       {
-        return new ResponseBuilder("La fecha de creación de la tarea es mayor que la fecha actual", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.CreateAtIsMoreThenNow, Codes.BadRequest).GetResult();
       }
 
       // Validar la fecha límite
       if (limitAt <= createAt)
       {
-        return new ResponseBuilder("La fecha de finalización debe ser posterior a la fecha de creación", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.LimitAtIsLessThenCreateAt, Codes.BadRequest).GetResult();
       }
 
       // Validar el formato de las fechas
       if (!DateTime.TryParse(task.createAt.ToString(), out _) || !DateTime.TryParse(task.limitAt.ToString(), out _))
       {
-        return new ResponseBuilder("Las fechas no tienen un formato válido", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.DateTimeIsInvalit, Codes.BadRequest).GetResult();
       }
 
       // Validar el título y el contenido
       if (string.IsNullOrEmpty(title))
       {
-        return new ResponseBuilder("La tarea debe llevar un título", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.TitleIsNullOrEmpry, Codes.BadRequest).GetResult();
       }
 
       if (string.IsNullOrEmpty(content))
       {
-        return new ResponseBuilder("La tarea debe contar con contenido", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.ContentIsNullOrEmply, Codes.BadRequest).GetResult();
       }
 
       // Validar la importancia
       if (important < 0 || important > 1)
       {
-        return new ResponseBuilder("La importancia de la tarea debe ser 0 para tareas normales o 1 para tareas de suma importancia", Codes.Ok).GetResult();
+        return new ResponseBuilder(ErrorsMessage.Important, Codes.Ok).GetResult();
       }
 
       // Validar los IDs
       if (string.IsNullOrEmpty(studentId) || studentId.Length != 36)
       {
-        return new ResponseBuilder("El 'studentId' no es correcto, debe tener 36 caracteres", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.StudentIdIsNullOrEmply, Codes.BadRequest).GetResult();
       }
 
       if (string.IsNullOrEmpty(teacherId) || teacherId.Length != 36)
       {
-        return new ResponseBuilder("El 'teacherId' no es correcto, debe tener 36 caracteres", Codes.BadRequest).GetResult();
+        return new ResponseBuilder(ErrorsMessage.TeacherIdIsNullOrEmply, Codes.BadRequest).GetResult();
       }
-
     }
-    return new ResponseBuilder("La fecha de creación de la tarea es mayor que la fecha actual", Codes.Ok).GetResult();
+
+    return new ResponseBuilder(ErrorsMessage.Ok, Codes.Ok).GetResult();
   }
 
 }
