@@ -1,144 +1,139 @@
 using Helper.ReadBody;
 using TaskCamelCase;
-using System.Globalization;
 using Helper.HttpStatusCodes;
-using Helper.CompareDateTime;
+using Helper.Responses;
+using Interface.Base;
 
 namespace Middleware.CheckTask;
 public class CheckTasks : MiddleBase
 {
   private readonly RequestDelegate _next;
+  private readonly IBase _base;
 
-  public CheckTasks(RequestDelegate next) { _next = next; }
+  public CheckTasks(RequestDelegate next, MiddleBase middleBase)
+  {
+    _next = next;
+    _base = middleBase;
+  }
 
   public async Task InvokeAsync(HttpContext ctx)
   {
-    try
+    if (GetPath(ctx) != "/task/new")
     {
-      if (GetPath(ctx) != "/task/new")
-      {
-        await _next(ctx);
-        return;
-      }
-
-      var body = await ReadBodyInMiddleware<List<Camel>>.Read(ctx);
-      int badRequest = Codes.BadRequest;
-      var response = ctx.Response;
-      DateTime dateNow = DateTime.Now;
-
-      string title;
-      string content;
-      int important;
-      string studentId;
-      string teacherId;
-      DateTime createAt;
-      DateTime limitAt;
-
-      async void responseAError(int statusCode = 50, string message = "No se proprociono el mensaje")
-      {
-        response.StatusCode = statusCode;
-        await ctx.Response.WriteAsJsonAsync(new { message, statusCode });
-      };
-
-      int ToneIsEarlierThanTtwo = -1;
-      int ToneIsTheSameAsTtwo = 0;
-      int ToneIsLatesThanTtwo = 1;
-
-      foreach (Camel task in body.anyData)
-      {
-        title = task.title;
-        content = task.content;
-        important = task.important;
-        studentId = task.studentId;
-        teacherId = task.teacherId;
-        createAt = task.createAt;
-        limitAt = task.limitAt;
-
-        System.Console.WriteLine(new
-        {
-          createAt = Convert.ToDateTime(task.createAt, new CultureInfo("es-AR")).ToString("dd/MM/yyyy"),
-          limitAt = Convert.ToDateTime(task.limitAt, new CultureInfo("es-AR"))
-        });
-
-        // Comparar la fecha actual con la que viene de la tarea
-        int nowIsEqualAtCreateAt = DateTime.Compare(dateNow.Date, createAt.Date);
-
-        // Comparar la fecha de creación de la tarea y la fecha de finalizacion
-        int compareCreteAtAndLimitAt = DateTime.Compare(dateNow.Date, limitAt.Date);
-
-        int ifLimitAtIsLess = DateTime.Compare(limitAt, createAt);
-
-        System.Console.WriteLine("Tuki {0}", CompareIf.A(dateNow.Date, createAt.Date));
-
-        System.Console.WriteLine(nowIsEqualAtCreateAt);
-        System.Console.WriteLine(compareCreteAtAndLimitAt);
-        System.Console.WriteLine(ifLimitAtIsLess);
-
-        if (!CompareIf.A(dateNow.Date, createAt.Date))
-        {
-          responseAError(badRequest, "La fecha de creación de la tarea es menor a la de finalizacion");
-          return;
-        }
-
-        if (compareCreteAtAndLimitAt == ToneIsLatesThanTtwo || compareCreteAtAndLimitAt == ToneIsTheSameAsTtwo)
-        {
-          responseAError(badRequest, "(._.)");
-          return;
-        }
-
-        if (!DateTime.TryParse(task.createAt.ToString(), out _))
-        {
-          responseAError(badRequest, "La fecha de inicio no tiene el formato valido");
-          return;
-        }
-
-        if (!DateTime.TryParse(task.limitAt.ToString(), out _))
-        {
-          responseAError(badRequest, "La fecha de inicio no tiene el formato valido");
-          return;
-        }
-
-        if (title.Length < 1 || title == null)
-        {
-          responseAError(badRequest, "La tarea debe llevar un titulo");
-          return;
-        }
-
-        if (content.Length < 1 || content == null)
-        {
-          responseAError(badRequest, "La tarea debe contar con el contenido de la misma");
-          return;
-        }
-
-        if (important > 1)
-        {
-          responseAError(badRequest, "La tarea debe contar con la importancia. 0 para tareas normales, 1 para tareas de suma importancia");
-          return;
-        }
-
-        if (studentId.Length != 36 || studentId == null)
-        {
-          responseAError(badRequest, "El 'studentId' no es correcto, debe ser de 36 de largo");
-          return;
-        }
-
-        if (teacherId.Length != 36 || teacherId == null)
-        {
-          responseAError(badRequest, "El 'teachertId' no es correcto, debe ser de 36 de largo");
-          return;
-        }
-      }
-      
       await _next(ctx);
       return;
     }
-    catch (System.Text.Json.JsonException ex)
+
+    var res = ctx.Response;
+
+    R asd(string message, int statusCode)
     {
-      Exceptions(ex, ctx, 400, "No se pudo serializar el JSON correctamente");
+      _base.SetStatusCode(ctx, statusCode);
+      return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
     }
-    catch (System.Exception ex)
+   
+    try
     {
-      Exceptions(ex, ctx, 500, "Error desconocido");
+      var body = await ReadBodyInMiddleware<List<Camel>>.Read(ctx);
+
+      var check = CheckObject(body.anyData);
+
+
+      if (check.httpCode != Codes.Ok)
+      {
+        _base.SetStatusCode(ctx, Codes.BadRequest);
+
+      }
+
+      await _next(ctx);
+      return;
+    }
+    catch (System.Text.Json.JsonException)
+    {
+      var err = asd("No se pudo serializar el JSON correctamente", Codes.BadRequest);
+      await res.WriteAsJsonAsync(err.anyData);
+    }
+    catch (System.Exception)
+    {
+      var err = asd("Error desconocido", Codes.InternalServerError);
+      await res.WriteAsJsonAsync(err.anyData);
     }
   }
+
+  public R CheckObject(List<Camel> tasks)
+  {
+    string title;
+    string content;
+    int important;
+    string studentId;
+    string teacherId;
+    DateTime createAt;
+    DateTime limitAt;
+
+    DateTime dateNow = DateTime.Now;
+
+    foreach (Camel task in tasks)
+    {
+      title = task.title;
+      content = task.content;
+      important = task.important;
+      studentId = task.studentId;
+      teacherId = task.teacherId;
+      createAt = task.createAt;
+      limitAt = task.limitAt;
+
+      int nowIsEqualAtCreateAt = DateTime.Compare(dateNow.Date, createAt.Date);
+      int compareCreteAtAndLimitAt = DateTime.Compare(dateNow.Date, limitAt.Date);
+      int ifLimitAtIsLess = DateTime.Compare(limitAt, createAt);
+
+      // Validar la fecha de creación
+      if (createAt > DateTime.Now)
+      {
+        return new ResponseBuilder("La fecha de creación de la tarea es mayor que la fecha actual", Codes.BadRequest).GetResult();
+      }
+
+      // Validar la fecha límite
+      if (limitAt <= createAt)
+      {
+        return new ResponseBuilder("La fecha de finalización debe ser posterior a la fecha de creación", Codes.BadRequest).GetResult();
+      }
+
+      // Validar el formato de las fechas
+      if (!DateTime.TryParse(task.createAt.ToString(), out _) || !DateTime.TryParse(task.limitAt.ToString(), out _))
+      {
+        return new ResponseBuilder("Las fechas no tienen un formato válido", Codes.BadRequest).GetResult();
+      }
+
+      // Validar el título y el contenido
+      if (string.IsNullOrEmpty(title))
+      {
+        return new ResponseBuilder("La tarea debe llevar un título", Codes.BadRequest).GetResult();
+      }
+
+      if (string.IsNullOrEmpty(content))
+      {
+        return new ResponseBuilder("La tarea debe contar con contenido", Codes.BadRequest).GetResult();
+      }
+
+      // Validar la importancia
+      if (important < 0 || important > 1)
+      {
+        return new ResponseBuilder("La importancia de la tarea debe ser 0 para tareas normales o 1 para tareas de suma importancia", Codes.Ok);
+      }
+
+      // Validar los IDs
+      if (string.IsNullOrEmpty(studentId) || studentId.Length != 36)
+      {
+        return new ResponseBuilder("El 'studentId' no es correcto, debe tener 36 caracteres", Codes.BadRequest).GetResult();
+      }
+
+      if (string.IsNullOrEmpty(teacherId) || teacherId.Length != 36)
+      {
+        return new ResponseBuilder("El 'teacherId' no es correcto, debe tener 36 caracteres", Codes.BadRequest).GetResult();
+      }
+
+    }
+    return new ResponseBuilder("La fecha de creación de la tarea es mayor que la fecha actual", Codes.Ok).GetResult();
+  }
+
 }
