@@ -78,6 +78,7 @@
 │   └── SchoolCtx.cs
 ├── appsettings.Development.json
 ├── appsettings.json
+├── create_structure.sh
 ├── doc.md
 ├── Escuela.csproj
 ├── folder estructure.txt
