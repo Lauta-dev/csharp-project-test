@@ -1,6 +1,6 @@
 [{
-  "Name": "Thiago",
-  "LastName": "Correa",
+  "Name": "Ezio",
+  "LastName": "Da Firenze",
   "Age": 23,
   "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
   "Schedule": "2024-04-22T12:37:00.000Z",
@@ -8,8 +8,8 @@
   "SchoolSubject": "Informatica"
 },
 {
-  "Name": "Facundo",
-  "LastName": "Diaz",
+  "Name": "Momo",
+  "LastName": "JP",
   "Age": 25,
   "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
   "Schedule": "2024-04-22T12:37:00.000Z",
@@ -17,8 +17,8 @@
   "SchoolSubject": "Informatica"
 },
 {
-  "Name": "Jorde",
-  "LastName": "Correa",
+  "Name": "Gordo",
+  "LastName": "Puto 2",
   "Age": 20,
   "fechaDeNacimiento": "2024-04-08T15:05:05.699Z",
   "Schedule": "2024-04-22T12:37:00.000Z",

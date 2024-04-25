@@ -16,7 +16,9 @@ static class DefaultRouts
   public const string ClassroomDelete = "/classroom/delete";
 
   /*
-   *
+   * Task
    */
   public const string RemoveTask = "/task/delete";
+
+  public const string RemoveTeachers = "/teacher/";
 }

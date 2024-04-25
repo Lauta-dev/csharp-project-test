@@ -5,6 +5,7 @@ using Helper.Responses;
 
 using Model.PostTeacher;
 using Model.GetTeachers;
+using Model.DeleteTeachers;
 
 using SchoolManagement.Teacher;
 
@@ -15,4 +16,9 @@ public class TeacherServieces : ISchoolManagementTeacher
 
   public R AddNewTeacher(TeacherModel[] teacher) => PostTeacher.S(_db, teacher);
   public R GetAllTeacher() => GetTeachers.S(_db);
+  async public Task<R> RemoveTeachers(string[] ids)
+  {
+    var data = await new DeleteTeacher(_db).Delete(ids);
+    return data;
+  }
 }

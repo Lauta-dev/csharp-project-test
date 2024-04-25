@@ -10,7 +10,6 @@ class DeleteTask
 
   async public Task<R> Delete(string taskId, string teacherId)
   {
-    System.Console.WriteLine($"id: {taskId}, teacherId {teacherId}");
     var check = Check(teacherId, taskId);
 
     if (!check)
@@ -28,17 +27,10 @@ class DeleteTask
     var teacher = _db.teacher.FirstOrDefault(t => t.Id == teacherId);
     var task = _db.task.FirstOrDefault(t => t.Id == taskId);
     
-    if (task == null || teacher == null)
-    {
-      return false;
-    }
-
-    if (task.teacherId != teacher.Id)
-    {
-      return false;
-    }
+    if (task == null || teacher == null) return false;
+    if (task.teacherId != teacher.Id) return false;
 
     return true;
   }
-
 }
+

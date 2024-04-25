@@ -18,5 +18,35 @@
     "studentId": "fcd68805-9fc1-4019-ada2-d031354bba66",
     "teacherId": "a800c720-92f6-4e9e-b8bb-f6da8dc62af4",
     "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
+  },
+  {
+    "title": "Socket en C",
+    "content": "Proyecto final para crear un Socket en C",
+    "important": 1,
+    "createAt": "2024-04-23T14:52:35.453Z",
+    "limitAt": "2024-05-09T14:52:00.000Z",
+    "studentId": "fcd68805-9fc1-4019-ada2-d031354bba66",
+    "teacherId": "345d9d10-e7f8-40c1-87c0-56d06243dca3",
+    "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
+  },
+  {
+    "title": "POO en C++",
+    "content": "Practique los elementos más esenciales en C++",
+    "important": 0,
+    "createAt": "2024-04-23T14:52:35.453Z",
+    "limitAt": "2024-05-09T14:52:00.000Z",
+    "studentId": "fcd68805-9fc1-4019-ada2-d031354bba66",
+    "teacherId": "345d9d10-e7f8-40c1-87c0-56d06243dca3",
+    "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
+  },
+  {
+    "title": "TTTT",
+    "content": "(._.)",
+    "important": 0,
+    "createAt": "2024-04-23T14:52:35.453Z",
+    "limitAt": "2024-05-09T14:52:00.000Z",
+    "studentId": "fcd68805-9fc1-4019-ada2-d031354bba66",
+    "teacherId": "345d9d10-e7f8-40c1-87c0-56d06243dca3",
+    "ClassroomsId": "d7fbbe3f-e107-4ad0-914a-a30d6a741c8b"
   }
 ]

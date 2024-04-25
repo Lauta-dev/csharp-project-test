@@ -26,5 +26,14 @@ public class Teacher : Controller
     System.Console.WriteLine(data.httpCode);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
   }
+
+  [HttpDelete]
+  async public Task<object> Delete(string id)
+  {
+    string[] ids = id.Split(",");
+
+    var data = await Req.RemoveTeachers(ids);
+    return StatusCode(data.httpCode, data);
+  }
 }
 

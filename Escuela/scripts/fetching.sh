@@ -88,16 +88,19 @@ remove_data () {
 
 #----------------  Tareas (Tasks)  ----------------#
 
-task_id="5df91d0e-5116-4356-aec4-11680408f13e"
-teacher_id="a800c720-92f6-4e9e-b8bb-f6da8dc62af4"
+task_id="6b6d13b9-dcdc-490e-b63b-0ae220de6ffc"
+teacher_id="345d9d10-e7f8-40c1-87c0-56d06243dca3"
 
 #get_data "$baseURL/task"
 #post_data "$(cat ./tasks.json)" "$baseURL/task/new"
-remove_data "$baseURL/task/delete?taskId=$task_id&teacherId=$teacher_id"
+#remove_data "$baseURL/task/delete?taskId=$task_id&teacherId=$teacher_id"
 
 #----------------  Profesores (Teachers)  ----------------#
 
+ids="$(cat ./t.txt)"
+
 #get_data "$baseURL/profe"
 #post_data "$(cat ./teacher.json)" "$baseURL/teacher/new"
+remove_data "$baseURL/teacher/delete?id=$ids"
 
 #---------------------------------------------------------#
