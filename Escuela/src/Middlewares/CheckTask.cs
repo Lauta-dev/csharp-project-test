@@ -26,7 +26,7 @@ public class CheckTasks : MiddleBase
 
     var res = ctx.Response;
 
-    R asd(string message, int statusCode)
+    ResponseModel asd(string message, int statusCode)
     {
       _base.SetStatusCode(ctx, statusCode);
       return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
@@ -60,7 +60,7 @@ public class CheckTasks : MiddleBase
     }
   }
 
-  public R CheckObject(List<Camel> tasks)
+  public ResponseModel CheckObject(List<Camel> tasks)
   {
     string title;
     string content;
@@ -118,7 +118,7 @@ public class CheckTasks : MiddleBase
       // Validar la importancia
       if (important < 0 || important > 1)
       {
-        return new ResponseBuilder("La importancia de la tarea debe ser 0 para tareas normales o 1 para tareas de suma importancia", Codes.Ok);
+        return new ResponseBuilder("La importancia de la tarea debe ser 0 para tareas normales o 1 para tareas de suma importancia", Codes.Ok).GetResult();
       }
 
       // Validar los IDs

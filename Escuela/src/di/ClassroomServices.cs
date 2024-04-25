@@ -18,12 +18,12 @@ class ClassroomService : ISchoolManagementClassroom
     return new GetClassrooms(_db).Classrooms(); 
   }
 
-  public R AddNewClassrooms(Classrooms[] classroom)
+  public ResponseModel AddNewClassrooms(Classrooms[] classroom)
   {
     return new PostClassroom(_db).Classroom(classroom);
   }
 
-  async public Task<R> RemoveClassrooms(string id)
+  async public Task<ResponseModel> RemoveClassrooms(string id)
   {
     var data = await new DeleteClassroom(_db).Remove(id);
     return data;

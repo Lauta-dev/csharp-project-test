@@ -5,6 +5,6 @@ namespace SchoolManagement.Classroom;
 public interface ISchoolManagementClassroom
 {
   public object GetClassrooms();
-  public R AddNewClassrooms(Classrooms[] classroom);
-  public Task<R> RemoveClassrooms(string id);
+  public ResponseModel AddNewClassrooms(Classrooms[] classroom);
+  public Task<ResponseModel> RemoveClassrooms(string id);
 }

@@ -8,7 +8,7 @@ class DeleteTask
   private readonly SchoolCtx _db;
   public DeleteTask(SchoolCtx db) { _db = db; }
 
-  async public Task<R> Delete(string taskId, string teacherId)
+  async public Task<ResponseModel> Delete(string taskId, string teacherId)
   {
     var check = Check(teacherId, taskId);
 

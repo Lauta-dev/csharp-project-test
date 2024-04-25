@@ -4,7 +4,7 @@ using Helper.Responses;
 namespace SchoolManagement.Task;
 public interface ISchoolManagementTask
 {
-  public R AddNewTask(StudentTask[] studentTasks);
-  public R GetTasks();
-  public Task<R> RemoveTask(string taskId, string teacherId);
+  public ResponseModel AddNewTask(StudentTask[] studentTasks);
+  public ResponseModel GetTasks();
+  public Task<ResponseModel> RemoveTask(string taskId, string teacherId);
 }

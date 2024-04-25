@@ -14,7 +14,7 @@ class PostStudents
     _db = db;
   }
 
-  public R S(Student[] alumnos)
+  public ResponseModel S(Student[] alumnos)
   {
     try
     {

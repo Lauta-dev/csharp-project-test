@@ -18,14 +18,14 @@ public class ResponseBuilder
     HttpCode = httpCode;
   }
 
-  public R GetResult() => new R {
+  public ResponseModel GetResult() => new ResponseModel {
     comment = Comment,
     httpCode = HttpCode,
     anyData = AnyData
   };
 }
 
-public class R
+public class ResponseModel
 {
   public string comment;
   public int httpCode;

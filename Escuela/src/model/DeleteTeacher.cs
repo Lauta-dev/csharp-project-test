@@ -11,7 +11,7 @@ class DeleteTeacher
   private readonly SchoolCtx _db;
   public DeleteTeacher(SchoolCtx db) { _db = db; }
 
-  async public Task<R> Delete(string[] ids)
+  async public Task<ResponseModel> Delete(string[] ids)
   {
     List<TeacherModel> teachers = new List<TeacherModel>();
 

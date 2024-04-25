@@ -9,7 +9,7 @@ class DeleteStudent
 
   public DeleteStudent(SchoolCtx db) { _db = db; }
 
-  async public Task<R> Delete(string id)
+  async public Task<ResponseModel> Delete(string id)
   {
     var user = _db.student.FirstOrDefault(u => u.Id == id);
     int statusCode;

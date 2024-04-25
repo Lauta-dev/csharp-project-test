@@ -8,6 +8,6 @@ public interface IRequestAlumno
   public List<object> GetStudents();
   public object GetStudentById(string id);
   public object GetStudentByClassroom(string id, int limit);
-  public R AddNewStudent(Student[] alumnos);
-  public Task<R> RemoveStudent(string id);
+  public ResponseModel AddNewStudent(Student[] alumnos);
+  public Task<ResponseModel> RemoveStudent(string id);
 }

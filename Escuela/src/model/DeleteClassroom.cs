@@ -12,7 +12,7 @@ class DeleteClassroom
     _db = db;
   }
   
-  async public Task<R> Remove(string id)
+  async public Task<ResponseModel> Remove(string id)
   {
     var checkUser = _db.classroom.FirstOrDefault(x => x.Id == id);
     string message;

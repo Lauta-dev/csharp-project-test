@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace Middleware.CheckBody;
 class CheckBody
 {
-  public R Check(Classrooms[] classrooms)
+  public ResponseModel Check(Classrooms[] classrooms)
   {
     // Chekear si hay duplicados
     var checkDuplicate = classrooms.DistinctBy(x => x.Aula);

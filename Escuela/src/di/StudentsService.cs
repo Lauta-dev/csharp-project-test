@@ -33,12 +33,12 @@ class AlumnoService : IRequestAlumno
     return new GetStudentsByClassroom(_db).S(id, limit);
   }
 
-  public R AddNewStudent(Student[] alumnos)
+  public ResponseModel AddNewStudent(Student[] alumnos)
   {
     return new PostStudents(_db).S(alumnos);
   }
   
-  async public Task<R> RemoveStudent(string id)
+  async public Task<ResponseModel> RemoveStudent(string id)
   {
     var data = await new DeleteStudent(_db).Delete(id);
     return data;

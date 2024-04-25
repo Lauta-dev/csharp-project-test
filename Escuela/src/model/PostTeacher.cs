@@ -5,7 +5,7 @@ using Escuela.Models.TeacherModel;
 namespace Model.PostTeacher;
 public class PostTeacher
 {
-  public static R S(SchoolCtx db, TeacherModel[] teachers)
+  public static ResponseModel S(SchoolCtx db, TeacherModel[] teachers)
   {
 
     System.Console.WriteLine("hola");

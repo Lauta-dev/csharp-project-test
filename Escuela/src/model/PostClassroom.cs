@@ -14,7 +14,7 @@ class PostClassroom
     _db = db;
   }
 
-  public R Classroom(Classrooms[] classrooms)
+  public ResponseModel Classroom(Classrooms[] classrooms)
   {
     bool error = false;
     string pattern = @"^\d+-[A-Z]$";

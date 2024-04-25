@@ -14,9 +14,9 @@ public class TeacherServieces : ISchoolManagementTeacher
 {
   private readonly SchoolCtx _db = new SchoolCtx();
 
-  public R AddNewTeacher(TeacherModel[] teacher) => PostTeacher.S(_db, teacher);
-  public R GetAllTeacher() => GetTeachers.S(_db);
-  async public Task<R> RemoveTeachers(string[] ids)
+  public ResponseModel AddNewTeacher(TeacherModel[] teacher) => PostTeacher.S(_db, teacher);
+  public ResponseModel GetAllTeacher() => GetTeachers.S(_db);
+  async public Task<ResponseModel> RemoveTeachers(string[] ids)
   {
     var data = await new DeleteTeacher(_db).Delete(ids);
     return data;

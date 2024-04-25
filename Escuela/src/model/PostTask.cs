@@ -5,7 +5,7 @@ using Helper.Responses;
 namespace Model.PostTask;
 public class StudentTasks
 {
-  public static R S(SchoolCtx db, StudentTask[] studentTasks)
+  public static ResponseModel S(SchoolCtx db, StudentTask[] studentTasks)
   {
     db.task.AddRange(studentTasks);
     db.SaveChanges();

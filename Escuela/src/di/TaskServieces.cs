@@ -10,8 +10,8 @@ class TaskService : ISchoolManagementTask
 {
   private readonly SchoolCtx _db = new SchoolCtx();
 
-  public R AddNewTask(StudentTask[] studentTasks) => StudentTasks.S(_db, studentTasks);
-  public R GetTasks() => Model.GetTask.GetTasks.S(_db);
-  async public Task<R> RemoveTask(string taskId, string teacherId)
+  public ResponseModel AddNewTask(StudentTask[] studentTasks) => StudentTasks.S(_db, studentTasks);
+  public ResponseModel GetTasks() => Model.GetTask.GetTasks.S(_db);
+  async public Task<ResponseModel> RemoveTask(string taskId, string teacherId)
     => await new DeleteTask(_db).Delete(taskId, teacherId);
 }
