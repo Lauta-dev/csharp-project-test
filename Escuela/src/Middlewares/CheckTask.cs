@@ -31,7 +31,7 @@ public class CheckTasks : MiddleBase
       _base.SetStatusCode(ctx, statusCode);
       return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
     }
-   
+
     try
     {
       var body = await ReadBodyInMiddleware<List<Camel>>.Read(ctx);
