@@ -26,7 +26,7 @@ public class CheckTasks : MiddleBase
 
     var res = ctx.Response;
 
-    ResponseModel asd(string message, int statusCode)
+    ResponseModel GenerateResponseModel(string message, int statusCode)
     {
       _base.SetStatusCode(ctx, statusCode);
       return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
@@ -50,12 +50,12 @@ public class CheckTasks : MiddleBase
     }
     catch (System.Text.Json.JsonException)
     {
-      var err = asd("No se pudo serializar el JSON correctamente", Codes.BadRequest);
+      var err = GenerateResponseModel("No se pudo serializar el JSON correctamente", Codes.BadRequest);
       await res.WriteAsJsonAsync(err.anyData);
     }
     catch (System.Exception)
     {
-      var err = asd("Error desconocido", Codes.InternalServerError);
+      var err = GenerateResponseModel("Error desconocido", Codes.InternalServerError);
       await res.WriteAsJsonAsync(err.anyData);
     }
   }
