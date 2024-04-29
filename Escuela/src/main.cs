@@ -3,10 +3,10 @@ using Middleware.CheckBodyBeforeAddClassroom;
 using Middleware.CheckTask;
 using Middleware.CheckTeacher;
 
-namespace Principal;
-class Main
+namespace Main;
+class Principal
 {
-  public static void Tuki(string[] args)
+  public static void StartApp(string[] args)
   {
     var builder = WebApplication.CreateBuilder(args);
     var configServices = new ServiceConfigurator(builder.Services);

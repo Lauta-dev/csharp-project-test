@@ -14,7 +14,11 @@ public class Classroom : Controller
     _req = classroom;
   }
 
-  public object Index() => _req.GetClassrooms();
+  public object Index() 
+  {
+    var data = _req.GetClassrooms();
+    return StatusCode(data.httpCode, data.anyData);
+  }
   
   [HttpPost(DefaultRouts.ClassroomNew)]
   public object NewClassroom([FromBody] Classrooms[] classrooms)

@@ -76,7 +76,7 @@ remove_data () {
 
 #----------------  Aulas (Classrooms)  ----------------#
 
-#get_data "$baseURL/classroom"
+get_data "$baseURL/classroom"
 #post_data "$(cat ./classrooms.json)" "$baseURL/classroom/new"
 #remove_data $baseURL/classroom/delete?id="ecf9f4c5-ce98-4e28-bf39-890d1ff83e22"
 
@@ -101,6 +101,6 @@ ids="$(cat ./t.txt)"
 
 #get_data "$baseURL/profe"
 #post_data "$(cat ./teacher.json)" "$baseURL/teacher/new"
-remove_data "$baseURL/teacher/delete?id=$ids"
+#remove_data "$baseURL/teacher/delete?id=$ids"
 
 #---------------------------------------------------------#

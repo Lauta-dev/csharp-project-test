@@ -13,7 +13,7 @@ class ClassroomService : ISchoolManagementClassroom
 {
   private readonly SchoolCtx _db = new SchoolCtx();
 
-  public object GetClassrooms()
+  public ResponseModel GetClassrooms()
   {
     return new GetClassrooms(_db).Classrooms(); 
   }

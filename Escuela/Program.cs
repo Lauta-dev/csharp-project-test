@@ -1,2 +1,2 @@
-using Principal;
-Main.Tuki(args);
+Main.Principal.StartApp(args);
+
