@@ -85,7 +85,7 @@ class PostStudents
       }
 
       _db.student.AddRange(alumnos);
-      _db.SaveChanges();
+      //_db.SaveChanges();
 
       return new ResponseBuilder("Alumnos añadidos", 200, alumnos).GetResult();
     }

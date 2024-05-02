@@ -4,27 +4,31 @@
     "lastName": "Diaz",
     "age": "21",
     "fechaDeNacimiento": "<<timestamp>>",
-    "ClassroomsId": "<<aula>>"
+    "ClassroomsId": "<<aula>>",
+    "mail": "lauta@gmail.com"
   },
   {
     "name": "Diegito",
     "lastName": "Bari",
     "age": "<<e>>",
     "fechaDeNacimiento": "<<timestamp>>",
-    "ClassroomsId": "<<aula>>"
+    "ClassroomsId": "<<aula>>",
+    "mail": "diegito@gmail.com"
   },
   {
     "name": "Baity",
     "lastName": "Byte",
     "age": "<<e>>",
     "fechaDeNacimiento": "<<timestamp>>",
-    "ClassroomsId": "<<aula>>"
+    "ClassroomsId": "<<aula>>",
+    "mail": "baity@gmail.com"
   },
   {
     "name": "J",
     "lastName": "Wulen",
     "age": "<<e>>",
     "fechaDeNacimiento": "<<timestamp>>",
-    "ClassroomsId": "<<aula>>"
+    "ClassroomsId": "<<aula>>",
+    "mail": "j@gmail.com"
   }
 ]
