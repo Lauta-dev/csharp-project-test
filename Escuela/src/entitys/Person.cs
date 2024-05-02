@@ -17,6 +17,12 @@ public class Person
   [Column("age")]
   public int Age { get; set; }
 
+  [Column("rol")]
+  public int Rol = 0;
+
+  [Column("mail")]
+  public string mail;
+
   [Column("fecha_de_nacimiento")]
   [DataType(DataType.Date)]
   [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
