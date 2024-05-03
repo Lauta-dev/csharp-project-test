@@ -35,7 +35,7 @@ class AlumnoService : IRequestAlumno
 
   public ResponseModel AddNewStudent(Student[] alumnos)
   {
-    return new PostStudents(_db).S(alumnos);
+    return new PostStudents(_db).AddStudents(alumnos);
   }
   
   async public Task<ResponseModel> RemoveStudent(string id)
