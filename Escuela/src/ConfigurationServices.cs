@@ -12,8 +12,6 @@ using SchoolManagement.Task;
 using TeacherManagement;
 using SchoolManagement.Teacher;
 
-using Interface.Base;
-
 namespace Escuela.Configuration
 {
   public class ServiceConfigurator
