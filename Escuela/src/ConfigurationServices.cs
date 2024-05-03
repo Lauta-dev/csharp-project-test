@@ -11,16 +11,19 @@ using SchoolManagement.Task;
 
 using TeacherManagement;
 using SchoolManagement.Teacher;
+using Auth0.AspNetCore.Authentication;
 
 namespace Escuela.Configuration
 {
   public class ServiceConfigurator
   {
     private readonly IServiceCollection services;
+    private readonly IConfiguration Configurations;
 
-    public ServiceConfigurator(IServiceCollection service)
+    public ServiceConfigurator(IServiceCollection service, IConfiguration configuration)
     {
       services = service;
+      Configurations = configuration;
     }
 
     public void Cors(string habilitarCors)
@@ -61,6 +64,17 @@ namespace Escuela.Configuration
           options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
           options.JsonSerializerOptions.PropertyNamingPolicy = null;
         });
+    }
+
+    public void Auth0Config() {
+      services.AddAuth0WebAppAuthentication(o =>
+      {
+        o.Domain = Configurations["Auth0:Domain"];
+        o.ClientId = builder.Configuration["Auth0:ClientId"];
+        o.ClientSecret = builder.Configuration["Auth0:SelectId"];
+      }).WithAccessToken(opt =>
+        opt.Audience = builder.Configuration["Auth0:Audience"]
+      );
     }
   }
 }
