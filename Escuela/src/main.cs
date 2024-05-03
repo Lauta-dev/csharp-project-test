@@ -14,17 +14,12 @@ class Principal
     configServices.AddScope();
     configServices.AddControllers();
     configServices.JsonConfig();
-
+    configServices.Auth0Config();
 
     var MyAllowSpecificOrigins = "cors";
     configServices.Cors(MyAllowSpecificOrigins);
 
     var app = builder.Build();
-
-    app.MapGet("/", () =>
-    {
-      return "asdasd";    
-    });
 
     app.UseAuthentication();
     app.UseAuthorization();
