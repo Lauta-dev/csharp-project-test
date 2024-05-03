@@ -18,10 +18,10 @@ public class Person
   public int Age { get; set; }
 
   [Column("rol")]
-  public int Rol = 0;
+  public int Rol { get; set; } = 0;
 
   [Column("mail")]
-  public string mail;
+  public string mail { get; set; }
 
   [Column("fecha_de_nacimiento")]
   [DataType(DataType.Date)]
