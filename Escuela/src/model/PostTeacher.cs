@@ -8,13 +8,12 @@ public class PostTeacher
   public static ResponseModel AddTeacher(SchoolCtx db, TeacherModel[] teachers)
   {
 
-    for (int i = 0; i < teachers.Length; i++)
+    foreach (var teacher in teachers)
     {
-      var teacher = teachers[i];
       var existeClassroom = db.classroom.FirstOrDefault(x => x.Id == teacher.ClassroomsId);
 
       if (existeClassroom is null)
-        return new ResponseBuilder("El aula no existe", 400).GetResult();
+        return new ResponseBuilder("El aula no existe", 400).GetResult();       
     }
 
     db.teacher.AddRange(teachers);
