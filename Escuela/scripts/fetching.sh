@@ -6,6 +6,10 @@ headers="Content-Type: application/json"
 user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 my_json="$(bun run ./changeIdInStudents.ts "cdec9d21-68c5-49db-be8e-3c9f5c74468a" ) "
 
+RED="\e[31m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
+
 #-------------------------------#
 
 # post_data: Envía una solicitud HTTP POST a una URL con los datos especificados.
@@ -58,7 +62,7 @@ get_data() {
   # TODO: Verificar que el servidor me devuelve un JSON e darle formato con 'jq', en caso contrario nada
 
   echo " ------------------------------------------"
-  echo " GET in $1"
+  echo -e "${GREEN} GET${ENDCOLOR}" "in $1"
   echo " ------------------------------------------"
   
   curl -Ss -X "GET" \
@@ -82,8 +86,8 @@ remove_data () {
 
 #----------------  Alumnos (Students)  ----------------#
 
-#get_data "$baseURL/students"
-post_data "$my_json" "$baseURL/students/new"
+get_data "$baseURL/students"
+#post_data "$my_json" "$baseURL/students/new"
 #remove_data $baseURL/students/delete?id="da"
 
 #----------------  Tareas (Tasks)  ----------------#

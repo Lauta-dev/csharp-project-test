@@ -14,7 +14,7 @@ public class TeacherServieces : ISchoolManagementTeacher
 {
   private readonly SchoolCtx _db = new SchoolCtx();
 
-  public ResponseModel AddNewTeacher(TeacherModel[] teacher) => PostTeacher.S(_db, teacher);
+  public ResponseModel AddNewTeacher(TeacherModel[] teacher) => PostTeacher.AddTeacher(_db, teacher);
   public ResponseModel GetAllTeacher() => GetTeachers.S(_db);
   async public Task<ResponseModel> RemoveTeachers(string[] ids)
   {
