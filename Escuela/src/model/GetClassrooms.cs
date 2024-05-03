@@ -24,6 +24,6 @@ public class GetClassrooms
 
     return classrooms.Count == 0
       ? response(Messages.ClassroomsNotFounds, Codes.BadRequest)
-      : response(Messages.ClassroomsFounds, Codes.Ok, classrooms);
+      : response("Ok", Codes.Ok, classrooms);
   }
 }
