@@ -66,6 +66,9 @@ class PostStudents
     if (age > DefaultAge.MinAge && age < DefaultAge.MaxAge)
       return Fu(Messages.StudentAgeRangeErrorMessage);
 
+    if (rol > 1)
+      return Fu("");
+
     return Fu("Ok", Codes.Ok);
   }
 }
