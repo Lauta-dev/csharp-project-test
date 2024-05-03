@@ -25,7 +25,7 @@ class AlumnoService : IRequestAlumno
 
   public object GetStudentById(string id)
   {
-    return new GetStudentById(_db).Student(id);
+    return new GetStudentById(_db).Students(id);
   }
 
   public object GetStudentByClassroom(string id, int limit = 10)

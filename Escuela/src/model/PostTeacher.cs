@@ -5,10 +5,9 @@ using Escuela.Models.TeacherModel;
 namespace Model.PostTeacher;
 public class PostTeacher
 {
-  public static ResponseModel S(SchoolCtx db, TeacherModel[] teachers)
+  public static ResponseModel AddTeacher(SchoolCtx db, TeacherModel[] teachers)
   {
 
-    System.Console.WriteLine("hola");
     for (int i = 0; i < teachers.Length; i++)
     {
       var teacher = teachers[i];

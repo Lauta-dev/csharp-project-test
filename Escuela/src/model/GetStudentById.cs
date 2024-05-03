@@ -1,4 +1,5 @@
 using ConsoleApp.PostgreSQL;
+using Model.Const.Message;
 
 namespace Model.GetStudentById;
 
@@ -6,19 +7,14 @@ public class GetStudentById
 {
   private readonly SchoolCtx _db;
 
-  public GetStudentById(SchoolCtx db) {
-    _db = db;
-  }
+  public GetStudentById(SchoolCtx db) { _db = db; }
 
-  public object Student(string id)
+  public object Students(string id)
   {
-    var student = _db.student.FirstOrDefault(s => s.Id.ToString() == id);
+    var students = _db.student.FirstOrDefault(student => student.Id == id);
 
-    if (student is null)
-    {
-      return "No exite el alumno";
-    }
-
-    return student;
+    return students != null
+      ? students
+      : Messages.StudentNotFound;
   }
 }

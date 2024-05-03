@@ -4,7 +4,7 @@ public static class Messages
   // Classrooms
   public const string ClassroomsNotFounds = "The classroom does not exist";
 
-  // Post student
+  // [POST] student
   // --
   public const string StudentNameIsEmply = "Name is null";
   public const string StudentLastNameIsEmply = "Last name is null";
@@ -14,4 +14,7 @@ public static class Messages
 
   // --
   public const string SuccessfullyAdded = "Successfully added";
+
+  // [GET] student
+  public const string StudentNotFound = "Student not found";
 }
