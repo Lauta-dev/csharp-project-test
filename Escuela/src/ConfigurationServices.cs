@@ -70,10 +70,10 @@ namespace Escuela.Configuration
       services.AddAuth0WebAppAuthentication(o =>
       {
         o.Domain = Configurations["Auth0:Domain"];
-        o.ClientId = builder.Configuration["Auth0:ClientId"];
-        o.ClientSecret = builder.Configuration["Auth0:SelectId"];
+        o.ClientId = Configurations["Auth0:ClientId"];
+        o.ClientSecret = Configurations["Auth0:SelectId"];
       }).WithAccessToken(opt =>
-        opt.Audience = builder.Configuration["Auth0:Audience"]
+        opt.Audience = Configurations["Auth0:Audience"]
       );
     }
   }
