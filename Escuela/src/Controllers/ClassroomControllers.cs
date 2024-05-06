@@ -8,10 +8,7 @@ public class Classroom : Controller
 {
   private readonly ISchoolManagementClassroom _req;
 
-  public Classroom(ISchoolManagementClassroom classroom)
-  {
-    _req = classroom;
-  }
+  public Classroom(ISchoolManagementClassroom classroom) { _req = classroom; }
 
   public object Index() 
   {

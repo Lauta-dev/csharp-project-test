@@ -73,7 +73,9 @@ namespace Escuela.Configuration
         o.ClientId = Configurations["Auth0:ClientId"];
         o.ClientSecret = Configurations["Auth0:SelectId"];
       }).WithAccessToken(opt =>
-        opt.Audience = Configurations["Auth0:Audience"]
+        {
+          opt.Audience = Configurations["Auth0:Audience"];
+        }
       );
     }
   }

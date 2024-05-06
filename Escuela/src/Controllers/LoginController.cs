@@ -9,7 +9,7 @@ public class Account : Controller
     public async Task<Object> Login(string returnUrl = "/")
     {
         var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-            .WithRedirectUri(returnUrl)
+            .WithRedirectUri("/callback")
             .WithAudience("Protected.Api")
             .Build();
 
