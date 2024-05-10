@@ -1,5 +1,4 @@
 using ConsoleApp.PostgreSQL;
-
 using StudentManagement;
 using SchoolManagement.AlumnoRe;
 
@@ -11,6 +10,10 @@ using SchoolManagement.Task;
 
 using TeacherManagement;
 using SchoolManagement.Teacher;
+
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Escuela.Configuration
 {
@@ -63,6 +66,22 @@ namespace Escuela.Configuration
           options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
           options.JsonSerializerOptions.PropertyNamingPolicy = null;
         });
+    }
+
+    public void ConfigAuth()
+    {
+      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(opt =>
+            opt.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidIssuer = Configurations["Jwt:Issuer"],
+                ValidAudience = Configurations["Jwt:Issuer"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configurations["Jwt:Key"])),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true
+      });
     }
   }
 }
