@@ -78,6 +78,9 @@ remove_data () {
     "$1"
 }
 
+#----------------  Login ----------------#
+post_data "$(/bin/cat ./nick.json)" $baseURL/account/login
+
 #----------------  Aulas (Classrooms)  ----------------#
 
 #get_data "$baseURL/classroom"
@@ -87,7 +90,7 @@ remove_data () {
 #----------------  Alumnos (Students)  ----------------#
 
 #get_data "$baseURL/students"
-post_data "$my_json" "$baseURL/students/new"
+#post_data "$my_json" "$baseURL/students/new"
 #remove_data $baseURL/students/delete?id="da"
 
 #----------------  Tareas (Tasks)  ----------------#
