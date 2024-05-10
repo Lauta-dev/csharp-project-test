@@ -46,7 +46,7 @@ namespace ConsoleApp.PostgreSQL
         .Build();
 
       var db = configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
-      optionsBuilder.UseNpgsql($"Host={db.Host};Database={db.DatabaseName};Username={db.Username}");
+      optionsBuilder.UseNpgsql($"Host={db.Host};Database={db.DatabaseName};Username={db.Username};Password={db.Password}");
     }
   }
 }
