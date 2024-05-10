@@ -14,7 +14,6 @@ class Principal
     configServices.AddScope();
     configServices.AddControllers();
     configServices.JsonConfig();
-    configServices.Auth0Config();
 
     var MyAllowSpecificOrigins = "cors";
     configServices.Cors(MyAllowSpecificOrigins);

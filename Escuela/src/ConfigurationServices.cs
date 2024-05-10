@@ -65,18 +65,5 @@ namespace Escuela.Configuration
           options.JsonSerializerOptions.PropertyNamingPolicy = null;
         });
     }
-
-    public void Auth0Config() {
-      services.AddAuth0WebAppAuthentication(o =>
-      {
-        o.Domain = Configurations["Auth0:Domain"];
-        o.ClientId = Configurations["Auth0:ClientId"];
-        o.ClientSecret = Configurations["Auth0:SelectId"];
-      }).WithAccessToken(opt =>
-        {
-          opt.Audience = Configurations["Auth0:Audience"];
-        }
-      );
-    }
   }
 }
