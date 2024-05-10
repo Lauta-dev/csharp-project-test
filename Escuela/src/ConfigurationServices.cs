@@ -11,7 +11,6 @@ using SchoolManagement.Task;
 
 using TeacherManagement;
 using SchoolManagement.Teacher;
-using Auth0.AspNetCore.Authentication;
 
 namespace Escuela.Configuration
 {
