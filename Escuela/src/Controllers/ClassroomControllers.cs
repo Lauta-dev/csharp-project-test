@@ -1,15 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Classroom;
 using Escuela.Models.Aulas;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Classroom.Controllers;
 
+[Authorize]
 public class Classroom : Controller
 {
   private readonly ISchoolManagementClassroom _req;
 
   public Classroom(ISchoolManagementClassroom classroom) { _req = classroom; }
 
+  [AllowAnonymous]
   public object Index() 
   {
     var data = _req.GetClassrooms();
