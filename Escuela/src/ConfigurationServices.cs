@@ -35,7 +35,6 @@ namespace Escuela.Configuration
           policy.WithOrigins("*")
         )
       );
-
     }
 
     public void AddDb()
