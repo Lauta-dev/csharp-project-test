@@ -1,8 +1,8 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using UserModel.Person;
 using System.Security.Claims;
+using Helper.BasicAuthInfo;
 
 namespace src.GenerateJwts;
 class GenerateJwt
@@ -10,7 +10,7 @@ class GenerateJwt
     private IConfiguration _config;
     public GenerateJwt(IConfiguration config) { _config = config; }
 
-    public string GenerateJSONWebToken(PersonModel userInfo)
+    public string GenerateJSONWebToken(Info info)
     {
         // El argumento que se le pasa a "GetBytes()" debe ser de 256 bits
 
@@ -20,8 +20,7 @@ class GenerateJwt
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[] {
-          new Claim("nickname", userInfo.nickname),
-          new Claim("id", userInfo.id),
+          new Claim("mail", info.mail),
           new Claim("DateOfJoing", DateTime.Now.ToString("d-m-yyyy"))
         };
         
