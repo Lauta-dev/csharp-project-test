@@ -1,5 +1,5 @@
 bin/
 Migrations/
 obj/
-scripts/
+scripts
 appsettings.json
