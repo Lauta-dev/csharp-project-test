@@ -2,6 +2,7 @@ using ConsoleApp.PostgreSQL;
 using Helper.Responses;
 using Helper.HttpStatusCodes;
 using Model.Const.Message;
+using Microsoft.EntityFrameworkCore;
 
 namespace Model.GetClassrooms;
 
@@ -14,7 +15,7 @@ public class GetClassrooms
   public ResponseModel Classrooms()
   {
     // TODO: evitar los objectos con valores null
-    var classrooms = _db.classroom.ToList();
+    var classrooms = _db.classroom.OrderBy(c => c.Aula).Select(c => c.Aula).ToArray();
 
     ResponseModel response (string message, int statusCode, object? moreData = null)
     {
@@ -22,7 +23,7 @@ public class GetClassrooms
       return new ResponseBuilder(message, statusCode, new { message, statusCode, moreData }).GetResult();
     }
 
-    return classrooms.Count == 0
+    return classrooms.Length == 0
       ? response(Messages.ClassroomsNotFounds, Codes.BadRequest)
       : response("Ok", Codes.Ok, classrooms);
   }
