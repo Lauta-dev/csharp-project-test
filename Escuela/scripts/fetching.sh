@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 port=5000
 baseURL="http://localhost:$port"
 headers="Content-Type: application/json"
