@@ -1,4 +1,5 @@
 namespace Model.Const.Message;
+
 public static class Messages
 {
   // Classrooms

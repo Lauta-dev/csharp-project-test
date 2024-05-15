@@ -1,4 +1,5 @@
 namespace TaskCamelCase;
+
 public class Camel
 {
   public string title { get; set; } = "";

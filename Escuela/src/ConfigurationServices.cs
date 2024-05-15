@@ -1,22 +1,17 @@
-using ConsoleApp.PostgreSQL;
-using StudentManagement;
-using SchoolManagement.AlumnoRe;
-
-using ClassroomManagement;
-using SchoolManagement.Classroom;
-
-using TaskManagement;
-using SchoolManagement.Task;
-
-using TeacherManagement;
-using SchoolManagement.Teacher;
-
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
 using CheckUserManagent;
+using ClassroomManagement;
+using ConsoleApp.PostgreSQL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using SchoolManagement.AlumnoRe;
 using SchoolManagement.CheckUser;
+using SchoolManagement.Classroom;
+using SchoolManagement.Task;
+using SchoolManagement.Teacher;
+using StudentManagement;
+using TaskManagement;
+using TeacherManagement;
 
 namespace Escuela.Configuration
 {
@@ -34,9 +29,7 @@ namespace Escuela.Configuration
     public void Cors(string habilitarCors)
     {
       services.AddCors(opt =>
-        opt.AddPolicy(name: habilitarCors, policy =>
-          policy.WithOrigins("*")
-        )
+        opt.AddPolicy(name: habilitarCors, policy => policy.WithOrigins("*"))
       );
     }
 
@@ -62,10 +55,10 @@ namespace Escuela.Configuration
 
     public void JsonConfig()
     {
-      services.AddControllersWithViews()
+      services
+        .AddControllersWithViews()
         .AddJsonOptions(options =>
         {
-          
           options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
           options.JsonSerializerOptions.PropertyNamingPolicy = null;
         });
@@ -73,18 +66,22 @@ namespace Escuela.Configuration
 
     public void ConfigAuth()
     {
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      services
+        .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(opt =>
-            opt.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidIssuer = Configurations["Jwt:Issuer"],
-                ValidAudience = Configurations["Jwt:Issuer"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configurations["Jwt:Key"])),
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true
-      });
+          opt.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidIssuer = Configurations["Jwt:Issuer"],
+            ValidAudience = Configurations["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+              Encoding.UTF8.GetBytes(Configurations["Jwt:Key"])
+            ),
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+          }
+        );
     }
   }
 }

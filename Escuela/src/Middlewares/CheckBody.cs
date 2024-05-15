@@ -1,8 +1,9 @@
-using Helper.Responses;
-using Escuela.Models.Aulas;
 using System.Text.RegularExpressions;
+using Escuela.Models.Aulas;
+using Helper.Responses;
 
 namespace Middleware.CheckBody;
+
 class CheckBody
 {
   public ResponseModel Check(Classrooms[] classrooms)
@@ -28,11 +29,19 @@ class CheckBody
       {
         comment = "Incorrect format";
         statusCode = 400;
-        return new ResponseBuilder(comment, statusCode, new { comment, statusCode, data = classrooms.Where(x => x != null).ToArray() }).GetResult();
+        return new ResponseBuilder(
+          comment,
+          statusCode,
+          new
+          {
+            comment,
+            statusCode,
+            data = classrooms.Where(x => x != null).ToArray()
+          }
+        ).GetResult();
       }
     }
 
     return new ResponseBuilder(comment, statusCode, new { comment, statusCode }).GetResult();
   }
 }
-

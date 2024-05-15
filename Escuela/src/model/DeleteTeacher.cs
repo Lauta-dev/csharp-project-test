@@ -1,17 +1,20 @@
-using Helper.Responses;
-using Helper.HttpStatusCodes;
-
 using ConsoleApp.PostgreSQL;
-
 using Escuela.Models.TeacherModel;
+using Helper.HttpStatusCodes;
+using Helper.Responses;
 
 namespace Model.DeleteTeachers;
+
 class DeleteTeacher
 {
   private readonly SchoolCtx _db;
-  public DeleteTeacher(SchoolCtx db) { _db = db; }
 
-  async public Task<ResponseModel> Delete(string[] ids)
+  public DeleteTeacher(SchoolCtx db)
+  {
+    _db = db;
+  }
+
+  public async Task<ResponseModel> Delete(string[] ids)
   {
     List<TeacherModel> teachers = new List<TeacherModel>();
 
@@ -24,10 +27,11 @@ class DeleteTeacher
       // NOTE: Se supone que al no encontrar profesores,
       // este devuevlve null, pero no es asi, los profesores se añaden incorrectamente al Array teachers
       if (data != null)
-        teachers.Add(data); 
+        teachers.Add(data);
     }
 
-    if (teachers.Count == 0) return new ResponseBuilder("", Codes.BadRequest).GetResult();
+    if (teachers.Count == 0)
+      return new ResponseBuilder("", Codes.BadRequest).GetResult();
 
     _db.teacher.RemoveRange(teachers);
     await _db.SaveChangesAsync();

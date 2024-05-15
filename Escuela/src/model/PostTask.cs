@@ -3,6 +3,7 @@ using Escuela.Models.Tarea;
 using Helper.Responses;
 
 namespace Model.PostTask;
+
 public class StudentTasks
 {
   public static ResponseModel S(SchoolCtx db, StudentTask[] studentTasks)

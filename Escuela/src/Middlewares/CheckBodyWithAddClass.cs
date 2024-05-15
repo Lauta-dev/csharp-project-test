@@ -1,10 +1,11 @@
-using Helper.ReadBody;
 using Escuela.Models.Aulas;
-using Helper.Respo;
 using Helper.HttpStatusCodes;
+using Helper.ReadBody;
+using Helper.Respo;
 using Interface.Base;
 
 namespace Middleware.CheckBodyBeforeAddClassroom;
+
 public class CheckClassrooms
 {
   private readonly RequestDelegate _next;
@@ -46,7 +47,9 @@ public class CheckClassrooms
     {
       System.Console.WriteLine(ex);
       _base.SetStatusCode(ctx, 400);
-      await res.WriteAsJsonAsync(new { NotAcceptable, message = "No se pudo convertir el valor a string" });
+      await res.WriteAsJsonAsync(
+        new { NotAcceptable, message = "No se pudo convertir el valor a string" }
+      );
       return;
     }
     catch (System.InvalidOperationException ex)
@@ -60,7 +63,7 @@ public class CheckClassrooms
       System.Console.WriteLine(ex);
       _base.SetStatusCode(ctx, 500);
       await res.WriteAsJsonAsync(new { NotAcceptable, message = "Error del servidor" });
-    };
+    }
+    ;
   }
 }
-

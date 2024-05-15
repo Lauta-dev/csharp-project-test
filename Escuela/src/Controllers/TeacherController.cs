@@ -1,6 +1,6 @@
+using Escuela.Models.TeacherModel;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Teacher;
-using Escuela.Models.TeacherModel;
 
 namespace Teacher.Controllers;
 
@@ -28,7 +28,7 @@ public class Teacher : Controller
   }
 
   [HttpDelete]
-  async public Task<object> Delete(string id)
+  public async Task<object> Delete(string id)
   {
     string[] ids = id.Split(",");
 
@@ -36,4 +36,3 @@ public class Teacher : Controller
     return StatusCode(data.httpCode, data);
   }
 }
-

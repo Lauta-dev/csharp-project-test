@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.AlumnoRe;
 using Escuela.Models.Alumno;
 using Helper.HttpStatusCodes;
+using Microsoft.AspNetCore.Mvc;
+using SchoolManagement.AlumnoRe;
 
 namespace Students.Controllers;
+
 public class Students : Controller
 {
   private readonly IRequestAlumno _req;
@@ -25,10 +26,7 @@ public class Students : Controller
   }
 
   [HttpGet]
-  public object Mul(
-    [FromQuery(Name = "id")] string id,
-    [FromQuery(Name = "limit")] int limit
-  )
+  public object Mul([FromQuery(Name = "id")] string id, [FromQuery(Name = "limit")] int limit)
   {
     return _req.GetStudentByClassroom(id, limit);
   }
@@ -52,7 +50,7 @@ public class Students : Controller
   }
 
   [HttpDelete]
-  async public Task<object> Delete(string id)
+  public async Task<object> Delete(string id)
   {
     var data = await _req.RemoveStudent(id);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);

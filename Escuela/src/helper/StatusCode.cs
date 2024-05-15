@@ -1,10 +1,11 @@
 using System.Net;
+
 namespace Helper.HttpStatusCodes;
+
 class Codes
 {
   // -> 2xx
   public const int Ok = (int)HttpStatusCode.OK;
-
 
   // -> 4xx
   public const int BadRequest = (int)HttpStatusCode.BadRequest;

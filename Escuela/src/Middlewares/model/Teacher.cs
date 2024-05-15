@@ -1,4 +1,5 @@
 namespace Middleware.model.Teacher;
+
 public class TeacherModel
 {
   public string name;

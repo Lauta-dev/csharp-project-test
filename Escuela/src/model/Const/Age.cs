@@ -1,4 +1,5 @@
 namespace Model.Const.Age;
+
 public static class DefaultAge
 {
   public const int Zero = 0;

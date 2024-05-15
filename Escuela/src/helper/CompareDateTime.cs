@@ -1,4 +1,5 @@
 namespace Helper.CompareDateTime;
+
 class CompareIf
 {
   // Este método retorna true si t1 esta adelantado de t2
@@ -13,7 +14,7 @@ class CompareIf
     return false;
   }
 
-  static public bool B(DateTime t1, DateTime t2)
+  public static bool B(DateTime t1, DateTime t2)
   {
     int compare = DateTime.Compare(t1, t2);
 

@@ -1,6 +1,7 @@
 using ConsoleApp.PostgreSQL;
 
 namespace Model.GetStudentsByClassroom;
+
 class GetStudentsByClassroom
 {
   private readonly SchoolCtx _db;
@@ -19,20 +20,22 @@ class GetStudentsByClassroom
       db.classroom,
       student => student.ClassroomsId,
       classroom => classroom.Id,
-      (s, c) => new
-      {
-        name = s.Name,
-        classroom = c.Aula,
-        classId = c.Id
-      }
+      (s, c) =>
+        new
+        {
+          name = s.Name,
+          classroom = c.Aula,
+          classId = c.Id
+        }
     );
 
     return new
     {
-      info = new {
-        next = limit > q.Count() ? 0 :  q.Count() - limit,
+      info = new
+      {
+        next = limit > q.Count() ? 0 : q.Count() - limit,
         prev = limit < 5 ? limit : limit - 5,
-        
+
         get = limit,
         from = q.Count(),
       },

@@ -1,8 +1,9 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Helper.UUID;
 
 namespace Escuela.Models.Base;
+
 public class Person
 {
   [Column("id")]

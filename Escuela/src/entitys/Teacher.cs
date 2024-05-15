@@ -1,10 +1,10 @@
-using Escuela.Models.Base;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using Escuela.Models.Base;
 using Escuela.Models.Tarea;
 
 namespace Escuela.Models.TeacherModel;
+
 [Table("teacher")]
 public class TeacherModel : Person
 {

@@ -1,5 +1,5 @@
-
 namespace Helper.Respo;
+
 public class ResponseBuilder<T>
 {
   public string Comment;
@@ -19,11 +19,13 @@ public class ResponseBuilder<T>
     HttpCode = httpCode;
   }
 
-  public R<T> GetResult() => new R<T> {
-    comment = Comment,
-    httpCode = HttpCode,
-    anyData = AnyData
-  };
+  public R<T> GetResult() =>
+    new R<T>
+    {
+      comment = Comment,
+      httpCode = HttpCode,
+      anyData = AnyData
+    };
 }
 
 public class R<T>

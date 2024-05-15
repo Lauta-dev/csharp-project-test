@@ -3,9 +3,10 @@ using System.Text.Json;
 using Helper.Respo;
 
 namespace Helper.ReadBody;
+
 class ReadBodyInMiddleware<T>
 {
-  static async public Task<R<T>> Read(HttpContext context)
+  public static async Task<R<T>> Read(HttpContext context)
   {
     var req = context.Request;
     req.EnableBuffering();

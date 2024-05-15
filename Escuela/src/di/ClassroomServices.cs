@@ -1,11 +1,10 @@
-using SchoolManagement.Classroom;
-using Model.GetClassrooms;
-using Model.PostClassroom;
+using ConsoleApp.PostgreSQL;
 using Escuela.Models.Aulas;
 using Helper.Responses;
-using ConsoleApp.PostgreSQL;
-
 using Model.DeleteClassrooms;
+using Model.GetClassrooms;
+using Model.PostClassroom;
+using SchoolManagement.Classroom;
 
 namespace ClassroomManagement;
 
@@ -15,7 +14,7 @@ class ClassroomService : ISchoolManagementClassroom
 
   public ResponseModel GetClassrooms()
   {
-    return new GetClassrooms(_db).Classrooms(); 
+    return new GetClassrooms(_db).Classrooms();
   }
 
   public ResponseModel AddNewClassrooms(Classrooms[] classroom)
@@ -23,7 +22,7 @@ class ClassroomService : ISchoolManagementClassroom
     return new PostClassroom(_db).Classroom(classroom);
   }
 
-  async public Task<ResponseModel> RemoveClassrooms(string id)
+  public async Task<ResponseModel> RemoveClassrooms(string id)
   {
     var data = await new DeleteClassroom(_db).Remove(id);
     return data;

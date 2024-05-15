@@ -1,15 +1,21 @@
-using Interface.Base;
-using Helper.Respo;
 using Escuela.Models.TeacherModel;
 using Helper.ReadBody;
+using Helper.Respo;
+using Interface.Base;
 
 namespace Middleware.CheckTeacher;
+
 class CheckTeacherBody
 {
   private readonly RequestDelegate _next;
   private readonly IBase _base;
-  public CheckTeacherBody(RequestDelegate next, MiddleBase middleBase) { _next = next; _base = middleBase; }
-  
+
+  public CheckTeacherBody(RequestDelegate next, MiddleBase middleBase)
+  {
+    _next = next;
+    _base = middleBase;
+  }
+
   public async Task InvokeAsync(HttpContext ctx)
   {
     if (!_base.GetPath(ctx).Contains("/teacher/new"))
@@ -17,7 +23,7 @@ class CheckTeacherBody
       await _next(ctx);
       return;
     }
-    
+
     var res = ctx.Response;
 
     string ifNameIsNull = "Name is null";
@@ -35,10 +41,10 @@ class CheckTeacherBody
     {
       int statusCode = _statusCode;
       _base.SetStatusCode(ctx, statusCode);
-      await res.WriteAsJsonAsync(new { message , statusCode });
+      await res.WriteAsJsonAsync(new { message, statusCode });
     }
 
-    foreach(var teacher in teachers)
+    foreach (var teacher in teachers)
     {
       if (teacher.Name == null || teacher.Name.Length == 0)
       {
@@ -70,13 +76,16 @@ class CheckTeacherBody
         return;
       }
 
-      if(teacher.Schedule.Hour > hsLimit)
+      if (teacher.Schedule.Hour > hsLimit)
       {
-        Err(400, $"El horario del profe ({teacher.Schedule.Hour}) debe ser menor a la hora limite ({hsLimit})");
+        Err(
+          400,
+          $"El horario del profe ({teacher.Schedule.Hour}) debe ser menor a la hora limite ({hsLimit})"
+        );
         return;
       }
     }
-    
+
     await _next(ctx);
   }
 }

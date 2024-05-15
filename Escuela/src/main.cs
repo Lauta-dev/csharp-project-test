@@ -4,6 +4,7 @@ using Middleware.CheckTask;
 using Middleware.CheckTeacher;
 
 namespace Main;
+
 class Principal
 {
   public static void StartApp(string[] args)

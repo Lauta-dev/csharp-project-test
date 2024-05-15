@@ -1,15 +1,19 @@
-using Helper.Responses;
 using ConsoleApp.PostgreSQL;
 using Helper.HttpStatusCodes;
+using Helper.Responses;
 
 namespace Model.DeleteStudents;
+
 class DeleteStudent
 {
   private readonly SchoolCtx _db;
 
-  public DeleteStudent(SchoolCtx db) { _db = db; }
+  public DeleteStudent(SchoolCtx db)
+  {
+    _db = db;
+  }
 
-  async public Task<ResponseModel> Delete(string id)
+  public async Task<ResponseModel> Delete(string id)
   {
     var user = _db.student.FirstOrDefault(u => u.Id == id);
     int statusCode;

@@ -1,26 +1,32 @@
-using Escuela.Models.Alumno;
 using ConsoleApp.PostgreSQL;
-using Helper.Responses;
+using Escuela.Models.Alumno;
 using Helper.HttpStatusCodes;
-using Model.Const.Message;
+using Helper.Responses;
 using Model.Const.Age;
+using Model.Const.Message;
 
 namespace Model.PostStudents;
+
 class PostStudents
 {
   private readonly SchoolCtx _db;
 
-  public PostStudents(SchoolCtx db) { _db = db; }
+  public PostStudents(SchoolCtx db)
+  {
+    _db = db;
+  }
 
   public ResponseModel AddStudents(Student[] students)
   {
     foreach (Student student in students)
     {
       var aula = _db.classroom.FirstOrDefault(e => e.Id == student.ClassroomsId);
-      if (aula == null) return new ResponseBuilder(Messages.ClassroomsNotFounds, Codes.BadRequest).GetResult();
-      if (CheckStudent(student).httpCode != Codes.Ok) return CheckStudent(student);
+      if (aula == null)
+        return new ResponseBuilder(Messages.ClassroomsNotFounds, Codes.BadRequest).GetResult();
+      if (CheckStudent(student).httpCode != Codes.Ok)
+        return CheckStudent(student);
     }
-    
+
     try
     {
       _db.student.AddRange(students);
@@ -38,15 +44,12 @@ class PostStudents
     }
   }
 
-  private ResponseModel Fu(string message = "not message", int statusCode = Codes.BadRequest) {
-    return new ResponseBuilder(
-      message,
-      statusCode,
-      new  { message, statusCode }
-    ).GetResult();
+  private ResponseModel Fu(string message = "not message", int statusCode = Codes.BadRequest)
+  {
+    return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
   }
 
-  private ResponseModel CheckStudent (Student student)
+  private ResponseModel CheckStudent(Student student)
   {
     string name = student.Name;
     string lastName = student.LastName;

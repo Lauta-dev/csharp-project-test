@@ -1,4 +1,5 @@
 namespace Helper.Responses;
+
 public class ResponseBuilder
 {
   public string Comment;
@@ -18,11 +19,13 @@ public class ResponseBuilder
     HttpCode = httpCode;
   }
 
-  public ResponseModel GetResult() => new ResponseModel {
-    comment = Comment,
-    httpCode = HttpCode,
-    anyData = AnyData
-  };
+  public ResponseModel GetResult() =>
+    new ResponseModel
+    {
+      comment = Comment,
+      httpCode = HttpCode,
+      anyData = AnyData
+    };
 }
 
 public class ResponseModel

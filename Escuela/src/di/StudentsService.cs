@@ -1,19 +1,15 @@
-using SchoolManagement.AlumnoRe;
 using ConsoleApp.PostgreSQL;
-
 using Escuela.Models.Alumno;
-
-using Model.GetStudents;
-using Model.GetStudentById;
-using Model.GetStudentsByClassroom;
-
-using Model.PostStudents;
-
 using Helper.Responses;
-
 using Model.DeleteStudents;
+using Model.GetStudentById;
+using Model.GetStudents;
+using Model.GetStudentsByClassroom;
+using Model.PostStudents;
+using SchoolManagement.AlumnoRe;
 
 namespace StudentManagement;
+
 class AlumnoService : IRequestAlumno
 {
   private readonly SchoolCtx _db = new SchoolCtx();
@@ -37,8 +33,8 @@ class AlumnoService : IRequestAlumno
   {
     return new PostStudents(_db).AddStudents(alumnos);
   }
-  
-  async public Task<ResponseModel> RemoveStudent(string id)
+
+  public async Task<ResponseModel> RemoveStudent(string id)
   {
     var data = await new DeleteStudent(_db).Delete(id);
     return data;

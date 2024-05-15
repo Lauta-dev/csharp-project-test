@@ -1,10 +1,11 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Escuela.Models.Aulas;
+using System.ComponentModel.DataAnnotations.Schema;
 using Escuela.Models.Alumno;
+using Escuela.Models.Aulas;
 using Helper.UUID;
 
 namespace Escuela.Models.Tarea;
+
 public class StudentTask
 {
   [Column("id")]

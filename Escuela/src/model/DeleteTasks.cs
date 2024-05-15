@@ -1,14 +1,19 @@
-using Helper.Responses;
 using ConsoleApp.PostgreSQL;
 using Helper.HttpStatusCodes;
+using Helper.Responses;
 
 namespace Model.DeleteTasks;
+
 class DeleteTask
 {
   private readonly SchoolCtx _db;
-  public DeleteTask(SchoolCtx db) { _db = db; }
 
-  async public Task<ResponseModel> Delete(string taskId, string teacherId)
+  public DeleteTask(SchoolCtx db)
+  {
+    _db = db;
+  }
+
+  public async Task<ResponseModel> Delete(string taskId, string teacherId)
   {
     var check = Check(teacherId, taskId);
 
@@ -17,7 +22,7 @@ class DeleteTask
 
     var task = _db.task.FirstOrDefault(t => t.Id == taskId);
     _db.task.Remove(task);
-    
+
     await _db.SaveChangesAsync();
     return new ResponseBuilder("Tarea borrada con exito", Codes.Ok).GetResult();
   }
@@ -26,11 +31,12 @@ class DeleteTask
   {
     var teacher = _db.teacher.FirstOrDefault(t => t.Id == teacherId);
     var task = _db.task.FirstOrDefault(t => t.Id == taskId);
-    
-    if (task == null || teacher == null) return false;
-    if (task.teacherId != teacher.Id) return false;
+
+    if (task == null || teacher == null)
+      return false;
+    if (task.teacherId != teacher.Id)
+      return false;
 
     return true;
   }
 }
-

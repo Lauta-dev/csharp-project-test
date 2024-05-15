@@ -1,10 +1,11 @@
+using System.Text.RegularExpressions;
 using ConsoleApp.PostgreSQL;
 using Escuela.Models.Aulas;
-using System.Text.RegularExpressions;
-using Helper.Responses;
 using Helper.HttpStatusCodes;
+using Helper.Responses;
 
 namespace Model.PostClassroom;
+
 class PostClassroom
 {
   private readonly SchoolCtx _db;
@@ -34,7 +35,6 @@ class PostClassroom
             comment = "Esta clase ya existe",
             statusCode = Codes.BadRequest,
             classrooms
-
           }
         ).GetResult();
       }
@@ -43,31 +43,30 @@ class PostClassroom
     if (error)
     {
       return new ResponseBuilder(
-          "Error al agregar las clases",
-          400,
-          new
-          {
-            pass = false,
-            comment = "Error al agregar las clases",
-            statusCode = 400,
-            classrooms
-
-          }
-        ).GetResult();
+        "Error al agregar las clases",
+        400,
+        new
+        {
+          pass = false,
+          comment = "Error al agregar las clases",
+          statusCode = 400,
+          classrooms
+        }
+      ).GetResult();
     }
 
     _db.classroom.AddRange(classrooms);
     _db.SaveChanges();
     return new ResponseBuilder(
-        "Clases agregadas",
-        200,
-        new
-        {
-          pass = true,
-          comment = classrooms.Length > 1 ? "Clases agregadas" : "Clase agregada",
-          statusCode = 200,
-          classrooms
-        }
-      ).GetResult();
+      "Clases agregadas",
+      200,
+      new
+      {
+        pass = true,
+        comment = classrooms.Length > 1 ? "Clases agregadas" : "Clase agregada",
+        statusCode = 200,
+        classrooms
+      }
+    ).GetResult();
   }
 }

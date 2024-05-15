@@ -1,11 +1,12 @@
-using Helper.ReadBody;
-using TaskCamelCase;
 using Helper.HttpStatusCodes;
+using Helper.ReadBody;
 using Helper.Responses;
 using Interface.Base;
 using Middleware.Error;
+using TaskCamelCase;
 
 namespace Middleware.CheckTask;
+
 public class CheckTasks : MiddleBase
 {
   private readonly RequestDelegate _next;
@@ -30,15 +31,7 @@ public class CheckTasks : MiddleBase
     ResponseModel GenerateResponseModel(string message, int statusCode)
     {
       _base.SetStatusCode(ctx, statusCode);
-      return new ResponseBuilder(
-        message,
-        statusCode,
-        new
-        {
-          message,
-          statusCode
-        }
-      ).GetResult();
+      return new ResponseBuilder(message, statusCode, new { message, statusCode }).GetResult();
     }
 
     try
@@ -60,7 +53,10 @@ public class CheckTasks : MiddleBase
     }
     catch (System.Text.Json.JsonException)
     {
-      var err = GenerateResponseModel("No se pudo serializar el JSON correctamente", Codes.BadRequest);
+      var err = GenerateResponseModel(
+        "No se pudo serializar el JSON correctamente",
+        Codes.BadRequest
+      );
       await res.WriteAsJsonAsync(err.anyData);
     }
     catch (System.Exception)
@@ -99,17 +95,26 @@ public class CheckTasks : MiddleBase
       // Validar la fecha de creación
       if (createAt > DateTime.Now)
       {
-        return new ResponseBuilder(ErrorsMessage.CreateAtIsMoreThenNow, Codes.BadRequest).GetResult();
+        return new ResponseBuilder(
+          ErrorsMessage.CreateAtIsMoreThenNow,
+          Codes.BadRequest
+        ).GetResult();
       }
 
       // Validar la fecha límite
       if (limitAt <= createAt)
       {
-        return new ResponseBuilder(ErrorsMessage.LimitAtIsLessThenCreateAt, Codes.BadRequest).GetResult();
+        return new ResponseBuilder(
+          ErrorsMessage.LimitAtIsLessThenCreateAt,
+          Codes.BadRequest
+        ).GetResult();
       }
 
       // Validar el formato de las fechas
-      if (!DateTime.TryParse(task.createAt.ToString(), out _) || !DateTime.TryParse(task.limitAt.ToString(), out _))
+      if (
+        !DateTime.TryParse(task.createAt.ToString(), out _)
+        || !DateTime.TryParse(task.limitAt.ToString(), out _)
+      )
       {
         return new ResponseBuilder(ErrorsMessage.DateTimeIsInvalit, Codes.BadRequest).GetResult();
       }
@@ -122,7 +127,10 @@ public class CheckTasks : MiddleBase
 
       if (string.IsNullOrEmpty(content))
       {
-        return new ResponseBuilder(ErrorsMessage.ContentIsNullOrEmply, Codes.BadRequest).GetResult();
+        return new ResponseBuilder(
+          ErrorsMessage.ContentIsNullOrEmply,
+          Codes.BadRequest
+        ).GetResult();
       }
 
       // Validar la importancia
@@ -134,16 +142,21 @@ public class CheckTasks : MiddleBase
       // Validar los IDs
       if (string.IsNullOrEmpty(studentId) || studentId.Length != 36)
       {
-        return new ResponseBuilder(ErrorsMessage.StudentIdIsNullOrEmply, Codes.BadRequest).GetResult();
+        return new ResponseBuilder(
+          ErrorsMessage.StudentIdIsNullOrEmply,
+          Codes.BadRequest
+        ).GetResult();
       }
 
       if (string.IsNullOrEmpty(teacherId) || teacherId.Length != 36)
       {
-        return new ResponseBuilder(ErrorsMessage.TeacherIdIsNullOrEmply, Codes.BadRequest).GetResult();
+        return new ResponseBuilder(
+          ErrorsMessage.TeacherIdIsNullOrEmply,
+          Codes.BadRequest
+        ).GetResult();
       }
     }
 
     return new ResponseBuilder(ErrorsMessage.Ok, Codes.Ok).GetResult();
   }
-
 }

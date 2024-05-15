@@ -1,7 +1,8 @@
-using Helper.Responses;
 using ConsoleApp.PostgreSQL;
+using Helper.Responses;
 
 namespace Model.GetTask;
+
 class GetTasks
 {
   public static ResponseModel S(SchoolCtx db)
