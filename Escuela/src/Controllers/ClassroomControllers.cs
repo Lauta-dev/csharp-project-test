@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.Classroom;
 using Escuela.Models.Aulas;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SchoolManagement.Classroom;
 
 namespace Classroom.Controllers;
 
@@ -10,10 +10,13 @@ public class Classroom : Controller
 {
   private readonly ISchoolManagementClassroom _req;
 
-  public Classroom(ISchoolManagementClassroom classroom) { _req = classroom; }
+  public Classroom(ISchoolManagementClassroom classroom)
+  {
+    _req = classroom;
+  }
 
   [AllowAnonymous]
-  public object Index() 
+  public object Index()
   {
     var data = _req.GetClassrooms();
     return StatusCode(data.httpCode, data.anyData);
@@ -38,7 +41,7 @@ public class Classroom : Controller
   }
 
   [HttpDelete]
-  async public Task<object> Delete(string id)
+  public async Task<object> Delete(string id)
   {
     var data = await _req.RemoveClassrooms(id);
     return StatusCode(data.httpCode, data.anyData ?? data.comment);
