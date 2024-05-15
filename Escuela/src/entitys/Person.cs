@@ -21,9 +21,12 @@ public class Person
   public int Rol { get; set; } = 0;
 
   [Column("mail")]
-  public string mail { get; set; }
+  public string Mail { get; set; }
 
-  [Column("fecha_de_nacimiento")]
+  [Column("password")]
+  public byte[] Password { get; set; }
+
+  [Column("date_of_birth")]
   [DataType(DataType.Date)]
   [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
   public DateTime FechaDeNacimiento { get; set; }
