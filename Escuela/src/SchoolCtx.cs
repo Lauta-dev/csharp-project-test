@@ -22,6 +22,8 @@ namespace ConsoleApp.PostgreSQL
       mb.Entity<TeacherModel>().HasKey(key => key.Id); // Tabla teacher
       mb.Entity<StudentTask>().HasKey(key => key.Id); // student_task
 
+      mb.Entity<Student>().Property(c => c.Password).IsFixedLength().IsRequired();
+
       // # Relaciones
       // - Tareas (tasks)
       mb.Entity<Classrooms>()
