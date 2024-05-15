@@ -15,7 +15,7 @@ class CheckUsers
 
     public ResponseModel Exist(string mail)
     {
-        Student? user = _db.student.FirstOrDefault(student => student.mail == mail);
+        Student? user = _db.student.FirstOrDefault(student => student.Mail == mail);
         string message = "Okay";
 
         if (user == null)

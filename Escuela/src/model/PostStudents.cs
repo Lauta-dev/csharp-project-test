@@ -52,7 +52,7 @@ class PostStudents
     string lastName = student.LastName;
     int age = student.Age;
     int rol = student.Rol;
-    string mail = student.mail;
+    string mail = student.Mail;
 
     if (string.IsNullOrEmpty(name))
       return Fu(Messages.StudentNameIsEmply);
