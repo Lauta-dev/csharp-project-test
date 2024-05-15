@@ -15,6 +15,9 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
+using CheckUserManagent;
+using SchoolManagement.CheckUser;
+
 namespace Escuela.Configuration
 {
   public class ServiceConfigurator
@@ -44,6 +47,7 @@ namespace Escuela.Configuration
 
     public void AddScope()
     {
+      services.AddScoped<ICheckUser, CheckUserServices>();
       services.AddScoped<MiddleBase>();
       services.AddScoped<IRequestAlumno, AlumnoService>();
       services.AddScoped<ISchoolManagementClassroom, ClassroomService>();
