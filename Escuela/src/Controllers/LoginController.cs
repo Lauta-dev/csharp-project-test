@@ -1,30 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
-using src.GenerateJwts;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using Helper.BasicAuthInfo;
-using Helper.ValidateEmails;
+using SchoolManagement.CheckUser;
 
 namespace Login.Controllers;
 public class Account : Controller
 {
     private readonly IConfiguration _config;
-    public Account(IConfiguration config) { _config = config; }
+    private readonly ICheckUser _checkUser;
+    public Account(IConfiguration config, ICheckUser checkUser)
+    {
+        _config = config;
+        _checkUser = checkUser;
+    }
 
     [HttpPost]
     public Object Login([FromBody] Info user)
     {
-        // TODO:
-        // - Validar que el mail exista en la base de datos
-        // - Dependiento si es alumno o profesor se le da un rol
-
-        string res = "Mail no valido";
-
-        if (Validate.Mail(user.mail))
-            return Results.Ok(new { access_token = new GenerateJwt(_config).GenerateJSONWebToken(user) });
-
-
-        return Results.BadRequest(res);
+        var checkUser = _checkUser.CheckUser(user.mail);
+        return StatusCode(checkUser.httpCode, checkUser.anyData);
     }
 
     [Authorize]
