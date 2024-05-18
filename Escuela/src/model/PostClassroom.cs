@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using ConsoleApp.PostgreSQL;
 using Escuela.Models.Aulas;
 using Helper.HttpStatusCodes;
@@ -18,8 +17,6 @@ class PostClassroom
   public ResponseModel Classroom(Classrooms[] classrooms)
   {
     bool error = false;
-    string pattern = @"^\d+-[A-Z]$";
-    System.Console.WriteLine("asdsa");
 
     foreach (Classrooms classroom in classrooms)
     {
