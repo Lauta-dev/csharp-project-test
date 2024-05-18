@@ -3,6 +3,7 @@ using Helper.BasicAuthInfo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.CheckUser;
+using src.GenerateJwts;
 
 namespace Login.Controllers;
 
@@ -20,8 +21,9 @@ public class Account : Controller
   [HttpPost]
   public Object Login([FromBody] Info user)
   {
-    var checkUser = _checkUser.CheckUser(user.mail);
-    return StatusCode(checkUser.httpCode, checkUser.anyData);
+    var checkUser = _checkUser.CheckUser(user);
+    string token = new GenerateJwt(_config).GenerateJSONWebToken(user);
+    return StatusCode(checkUser.httpCode, new { checkUser.anyData, token });
   }
 
   [Authorize]
