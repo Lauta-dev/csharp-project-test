@@ -1,4 +1,4 @@
-using Escuela.Models.Alumno;
+using dto.StudentDto;
 using Helper.HttpStatusCodes;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.AlumnoRe;
@@ -32,7 +32,7 @@ public class Students : Controller
   }
 
   [HttpPost]
-  public object New([FromBody] Student[] alumno)
+  public object New([FromBody] StudentDto[] alumno)
   {
     try
     {
