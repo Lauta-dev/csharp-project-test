@@ -27,6 +27,9 @@ public class Person
   [Column("password")]
   public byte[] Password { get; set; }
 
+  [Column("sal")]
+  public string Sal { get; set; }
+
   [Column("date_of_birth")]
   [DataType(DataType.Date)]
   [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
