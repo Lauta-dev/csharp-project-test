@@ -1,5 +1,5 @@
 using ConsoleApp.PostgreSQL;
-using Escuela.Models.Alumno;
+using dto.StudentDto;
 using Helper.Responses;
 using Model.DeleteStudents;
 using Model.GetStudentById;
@@ -29,7 +29,7 @@ class AlumnoService : IRequestAlumno
     return new GetStudentsByClassroom(_db).S(id, limit);
   }
 
-  public ResponseModel AddNewStudent(Student[] alumnos)
+  public ResponseModel AddNewStudent(StudentDto[] alumnos)
   {
     return new PostStudents(_db).AddStudents(alumnos);
   }
