@@ -10,6 +10,8 @@ class Principal
   public static void StartApp(string[] args)
   {
     var builder = WebApplication.CreateBuilder(args);
+    string? port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
     var configServices = new ServiceConfigurator(builder.Services, builder.Configuration);
     configServices.AddDb();
     configServices.AddScope();
@@ -21,6 +23,8 @@ class Principal
     configServices.Cors(MyAllowSpecificOrigins);
 
     var app = builder.Build();
+
+    app.MapGet("/apt", () => "Hi from docker");
 
     app.UseAuthentication();
     app.UseAuthorization();
