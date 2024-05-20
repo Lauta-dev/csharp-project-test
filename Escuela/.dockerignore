@@ -1,0 +1,12 @@
+.csharpierrc.yaml
+.csharpierrc.yml
+.git/
+.gitignore
+docker-compone.yaml
+docker-compone.yml
+ef.sh
+README.md
+Migrations/
+obj/
+scripts/
+
