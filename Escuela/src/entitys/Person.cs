@@ -33,5 +33,5 @@ public class Person
   [Column("date_of_birth")]
   [DataType(DataType.Date)]
   [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
-  public DateTime FechaDeNacimiento { get; set; }
+  public DateTime DateOfBirth { get; set; }
 }
