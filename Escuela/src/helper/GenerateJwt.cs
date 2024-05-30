@@ -4,7 +4,7 @@ using System.Text;
 using Helper.BasicAuthInfo;
 using Microsoft.IdentityModel.Tokens;
 
-namespace src.GenerateJwts;
+namespace helper.GenerateJwts;
 
 class GenerateJwt
 {
