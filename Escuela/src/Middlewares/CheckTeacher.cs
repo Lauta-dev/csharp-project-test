@@ -30,7 +30,6 @@ class CheckTeacherBody
     string ifLastNameIsNull = "LastName is null";
     string ifAgeIsAString = "Age is required to be a number";
     string ifClassroomIdIsNull = "ClassroomId is require";
-    string ifCheduleIsNull = "Schedule is require";
     string ifSchoolSubjetIsNull = "schoolSubject in require";
     int hsLimit = 13;
 
