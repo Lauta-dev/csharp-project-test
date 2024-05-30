@@ -16,7 +16,7 @@ class Mapper
       Sal = sal,
       Password = password,
       ClassroomsId = studentDto.classrooms_id,
-      FechaDeNacimiento = studentDto.date_of_birth,
+      DateOfBirth = studentDto.date_of_birth,
     };
   }
 }
