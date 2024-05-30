@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
 using ConsoleApp.PostgreSQL;
 using dto.MappStudentDto;
 using dto.StudentDto;
