@@ -1,4 +1,5 @@
 using DbSettings;
+using Escuela.Models.Admins;
 using Escuela.Models.Alumno;
 using Escuela.Models.Aulas;
 using Escuela.Models.Tarea;
@@ -13,29 +14,20 @@ namespace ConsoleApp.PostgreSQL
     public DbSet<Classrooms> classroom { get; set; }
     public DbSet<TeacherModel> teacher { get; set; }
     public DbSet<StudentTask> task { get; set; }
+    public DbSet<Admin> admin { get; set; }
 
     protected override void OnModelCreating(ModelBuilder mb)
     {
       // Asignar PK
-      mb.Entity<Classrooms>().HasKey(key => key.Id); // Tabla classrooms
-      mb.Entity<Student>().HasKey(key => key.Id); // Tabla student
-      mb.Entity<TeacherModel>().HasKey(key => key.Id); // Tabla teacher
-      mb.Entity<StudentTask>().HasKey(key => key.Id); // student_task
-
-      mb.Entity<Student>()
-        .Property(c => c.Password)
-        .IsFixedLength()
-        .HasColumnType("bytea")
-        .IsRequired(true);
+      mb.Entity<Classrooms>().HasKey(key => key.Id);
+      mb.Entity<Student>().HasKey(key => key.Id);
+      mb.Entity<TeacherModel>().HasKey(key => key.Id);
+      mb.Entity<StudentTask>().HasKey(key => key.Id);
+      mb.Entity<Admin>().HasKey(key => key.Id);
 
       // # Relaciones
-      // - Tareas (tasks)
       mb.Entity<Classrooms>().HasMany(e => e.st).WithOne(e => e.classroom);
-
-      // - Profesores a tareas
       mb.Entity<TeacherModel>().HasMany(e => e.studentTask).WithOne(e => e.teacher);
-
-      // - Tareas a alumnos
       mb.Entity<Student>().HasMany(e => e.studentTasks).WithOne(e => e.student);
     }
 
