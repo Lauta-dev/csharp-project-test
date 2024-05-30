@@ -15,11 +15,8 @@ class GenerateJwt
     _config = config;
   }
 
-  public string GenerateJSONWebToken(Info info)
+  public string GenerateJSONWebToken(Info info, int rol)
   {
-    // El argumento que se le pasa a "GetBytes()" debe ser de 256 bits
-
-    /* Obtiene la representación en bytes de ["Jwt:Key"] */
     var keyToBites = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
     var securityKey = new SymmetricSecurityKey(keyToBites);
     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -27,6 +24,7 @@ class GenerateJwt
     var claims = new[]
     {
       new Claim("mail", info.mail),
+      new Claim("rol", rol.ToString()),
       new Claim("DateOfJoing", DateTime.Now.ToString("d-m-yyyy"))
     };
 
