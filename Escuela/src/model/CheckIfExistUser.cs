@@ -7,7 +7,7 @@ using Helper.BasicAuthInfo;
 using Helper.HashText;
 using Helper.HttpStatusCodes;
 using Helper.Responses;
-using src.GenerateJwts;
+using helper.GenerateJwts;
 
 namespace Model.CheckIfExistUser;
 
